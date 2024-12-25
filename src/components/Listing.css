@@ -1,17 +1,22 @@
 .listing {
-    width: 60%;
-    margin-right: 20px;
-  }
-  
-  .listing h2 {
-    margin-bottom: 10px;
-  }
-  
-  .list-item {
-    background: #ecf0f1;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
+  flex: 1; /* İçeriği esnet */
+  margin-right: 20px; /* Sağdan boşluk bırak */
+}
+
+.listing h2 {
+  margin-bottom: 20px;
+  text-align: center; /* Başlığı ortala */
+}
+
+.list-item {
+  background: #ffffff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.list-item:hover {
+  transform: translateY(-3px); /* Hover animasyonu */
+}

@@ -11,15 +11,21 @@ const Home = () => {
       {/* Sol Menü */}
       <Sidebar />
 
-      {/* Ana İçerik ve Sağ Panel */}
+      {/* Ana İçerik */}
       <div className="main-content">
         {/* Üstteki Arama Çubuğu */}
-        <Searchbar />
+        <div className="search-section">
+          <Searchbar />
+        </div>
 
         {/* Liste ve Ayrıntı Paneli */}
         <div className="content-wrapper">
-          <Listing />
-          <DetailPanel />
+          <div className="listings">
+            <Listing />
+          </div>
+          <div className="details">
+            <DetailPanel />
+          </div>
         </div>
       </div>
     </div>

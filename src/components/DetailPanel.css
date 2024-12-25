@@ -1,12 +1,16 @@
 .detail-panel {
-    width: 40%;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .detail-panel h2 {
-    margin-bottom: 10px;
-  }
-  
+  flex: 0.5; /* Sağda daha az yer kapla */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.detail-panel h2 {
+  margin-bottom: 20px;
+}
+
+.detail-panel p {
+  color: #7f8c8d;
+}

@@ -1,35 +1,43 @@
 .sidebar {
-    width: 20%;
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .sidebar .logo {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar nav ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-  }
-  
-  .sidebar nav ul li {
-    margin: 10px 0;
-    padding: 10px;
-    text-align: center;
-    background: #34495e;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .sidebar nav ul li:hover {
-    background: #1abc9c;
-  }
-  
+  width: 15%; /* Sol tarafın genişliği */
+  height: 100vh; /* Tam ekran yüksekliği */
+  background: #2c3e50; /* Sidebar arka plan rengi */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px; /* Üstten boşluk */
+  position: fixed; /* Sayfada sabit */
+  top: 0;
+  left: 0;
+}
+
+.sidebar .logo {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 50px; /* Logo ile menü arasında boşluk */
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%; /* Tam genişlik */
+  display: flex;
+  flex-direction: column; /* Dikey hizalama */
+  gap: 15px; /* Menü öğeleri arasında boşluk */
+}
+
+.sidebar nav ul li {
+  margin: 0;
+  padding: 15px;
+  text-align: center;
+  background: #34495e; /* Menü arka planı */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sidebar nav ul li:hover {
+  background: #1abc9c; /* Hover efekti */
+}
