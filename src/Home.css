@@ -1,0 +1,16 @@
+.home-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .main-content {
+    width: 80%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content-wrapper {
+    display: flex;
+  }
+  
