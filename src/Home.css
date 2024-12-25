@@ -76,13 +76,34 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.listings,
-.details {
-  width: 48%; /* Yan yana iki alan eşit genişlikte */
+.listings {
+  width: 65%; /* Listings kısmı genişletildi */
+  max-height: 600px; /* Maksimum yükseklik belirlendi */
+  overflow-y: auto; /* Dikey kaydırma aktif */
   background-color: #f9f9f9;
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.details {
+  width: 30%; /* Details kısmı daha dar */
+  max-height: 600px; /* Maksimum yükseklik belirlendi */
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  /* Başlangıçta gizli */
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out;
+}
+
+/* Details aktif olduğunda */
+.details.active {
+  opacity: 1;
+  transform: translateX(0); /* Sağdan gelir */
 }
 
 .listings h2,
@@ -92,16 +113,34 @@
   color: #333;
 }
 
-.listings .list-item,
-.details .detail-content {
-  padding: 10px;
+.listings .list-item {
+  padding: 15px;
   background-color: white;
   border-radius: 5px;
   margin-bottom: 10px;
+  display: flex; /* İçeriği yatayda hizalamak için */
+  gap: 10px;
+  align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .listings .list-item:hover {
   background-color: #eef2f5;
-  cursor: pointer;
+  transform: scale(1.02); /* Hafif büyüme efekti */
+}
+
+.listings .list-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #ddd;
+}
+
+.details .detail-content {
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
