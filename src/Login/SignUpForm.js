@@ -1,9 +1,16 @@
 import React from "react";
 
+
 const SignUpForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Sign Up form submitted!");
+  };
+
   return (
-    <form>
-      <h2>Sign Up</h2>
+    <form onSubmit={handleSubmit}>
+      <h1>Create Account</h1>
+      <span>or use your email for registration</span>
       <input type="text" placeholder="Full Name" required />
       <input type="email" placeholder="Email" required />
       <input type="password" placeholder="Password" required />

@@ -2,27 +2,32 @@ import React, { useState } from "react";
 import "./App.css";
 import SignInForm from "./Login/SignInForm";
 import SignUpForm from "./Login/SignUpForm";
+import Footer from "./Footer";
 
 function App() {
-  const [isSignUp, setIsSignUp] = useState(true); // Kullanıcı hangi formu görmek istiyorsa
+  const [isSignUp, setIsSignUp] = useState(false); // Varsayılan olarak Sign In formu açık
 
+  // Form geçişini yönetiyor
   const toggleForm = () => {
-    setIsSignUp(!isSignUp); // Form geçişini kontrol eden state
+    setIsSignUp((prev) => !prev); // State'i değiştirir (Sign In -> Sign Up veya tersi)
   };
 
   return (
-    <div className="container">
-      <div className={`form-container ${isSignUp ? '' : 'right-panel-active'}`}>
-        <div className={`sign-in-container ${isSignUp ? 'right-panel-active' : ''}`}>
-          <SignInForm />
-        </div>
-        <div className={`sign-up-container ${isSignUp ? '' : 'right-panel-active'}`}>
-          <SignUpForm />
-        </div>
+    <div className={`container ${isSignUp ? "right-panel-active" : ""}`}>
+      {/* Sign Up Form */}
+      <div className="form-container sign-up-container">
+        <SignUpForm />
       </div>
 
-      <div className={`overlay-container ${isSignUp ? '' : 'right-panel-active'}`}>
-        <div className={`overlay ${isSignUp ? '' : 'right-panel-active'}`}>
+      {/* Sign In Form */}
+      <div className="form-container sign-in-container">
+        <SignInForm />
+      </div>
+
+      {/* Overlay */}
+      <div className="overlay-container">
+        <div className="overlay">
+          {/* Sign In Panel */}
           <div className="overlay-panel overlay-left">
             <h1>Welcome Back!</h1>
             <p>To keep connected with us please login with your personal info</p>
@@ -30,6 +35,8 @@ function App() {
               Sign In
             </button>
           </div>
+
+          {/* Sign Up Panel */}
           <div className="overlay-panel overlay-right">
             <h1>Hello, Friend!</h1>
             <p>Enter your personal details and start your journey with us</p>
@@ -39,6 +46,9 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
