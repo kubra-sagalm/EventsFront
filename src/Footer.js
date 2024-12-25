@@ -19,6 +19,7 @@ const Footer = () => {
         .
       </p>
     </footer>
+    
   );
 };
 
