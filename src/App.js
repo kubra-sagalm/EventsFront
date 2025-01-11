@@ -4,15 +4,20 @@ import "./App.css";
 import SignInForm from "./Login/SignInForm";
 import SignUpForm from "./Login/SignUpForm";
 import Footer from "./Footer";
-import Home from "./Home"; // Ana Sayfa Bileşeni
-import MyEvents from "./pages/MyEvents"; // Yeni Sayfa Bileşeni
+import Home from "./Home";
+import BenimEtkinliklerim from "./pages/BenimEtkinliklerim";
+import Layout from "./components/Layout";
 
 function App() {
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSidebarVisible, setSidebarVisible] = useState(false);
 
-  // Form geçişini yönetiyor
-  const toggleForm = () => {
-    setIsSignUp((prev) => !prev);
+  const handleMouseMove = (event) => {
+    const { clientX } = event;
+    if (clientX < 50) {
+      setSidebarVisible(true); // Fare sol sınıra yakınsa Sidebar'ı göster
+    } else if (clientX > 250) {
+      setSidebarVisible(false); // Fare Sidebar'dan çıkarsa gizle
+    }
   };
 
   return (
@@ -22,7 +27,7 @@ function App() {
         <Route
           path="/"
           element={
-            <div className={`container ${isSignUp ? "right-panel-active" : ""}`}>
+            <div className={`container ${isSidebarVisible ? "right-panel-active" : ""}`}>
               <div className="form-container sign-up-container">
                 <SignUpForm />
               </div>
@@ -36,7 +41,7 @@ function App() {
                     <p>
                       To keep connected with us please login with your personal info
                     </p>
-                    <button className="ghost" onClick={toggleForm}>
+                    <button className="ghost" onClick={() => setSidebarVisible(false)}>
                       Sign In
                     </button>
                   </div>
@@ -45,7 +50,7 @@ function App() {
                     <p>
                       Enter your personal details and start your journey with us
                     </p>
-                    <button className="ghost" onClick={toggleForm}>
+                    <button className="ghost" onClick={() => setSidebarVisible(false)}>
                       Sign Up
                     </button>
                   </div>
@@ -56,11 +61,23 @@ function App() {
           }
         />
 
-        {/* Ana Sayfa */}
-        <Route path="/home" element={<Home />} />
-
-        {/* Benim Oluşturduğum Etkinlikler Sayfası */}
-        <Route path="/my-events" element={<MyEvents />} />
+        {/* Layout Kullanılan Sayfalar */}
+        <Route
+          path="/home"
+          element={
+            <Layout isSidebarVisible={isSidebarVisible} onMouseMove={handleMouseMove}>
+              <Home />
+            </Layout>
+          }
+        />
+        <Route
+          path="/benim-etkinliklerim"
+          element={
+            <Layout isSidebarVisible={isSidebarVisible} onMouseMove={handleMouseMove}>
+              <BenimEtkinliklerim />
+            </Layout>
+          }
+        />
       </Routes>
     </Router>
   );
