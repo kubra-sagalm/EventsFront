@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Steps, Form, Input, Button, Select, DatePicker } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./EventCreation.css";
@@ -10,6 +10,12 @@ const { Option } = Select;
 const EventCreation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Animasyonu başlatmak için CSS sınıfını ekleyin
+    const text = document.querySelector(".cute-avatar-text");
+    text.classList.add("animated-text");
+  }, []);
 
   const next = () => {
     setCurrentStep(currentStep + 1);
@@ -89,36 +95,32 @@ const EventCreation = () => {
       ),
     },
     {
-        title: "Açıklama",
-        content: (
-          <div>
-            <h3>Etkinlik Açıklaması</h3>
-            <Form layout="vertical">
-              <Form.Item label="Açıklama" name="description" required>
-                <TextArea
-                  rows={6} // Daha büyük bir kutu için satır sayısı artırıldı
-                  placeholder="Etkinlik açıklamasını girin"
-                  style={{
-                    fontSize: "16px",
-                    padding: "10px",
-                    borderRadius: "8px",
-                    width: "500%", // Kutuyu yatay olarak tam genişlikte uzat
-                  }}
-                />
-              </Form.Item>
-            </Form>
-          </div>
-        ),
-      },      
+      title: "Açıklama",
+      content: (
+        <div>
+          <h3>Etkinlik Açıklaması</h3>
+          <Form layout="vertical">
+            <Form.Item label="Açıklama" name="description" required>
+              <TextArea
+                rows={6}
+                placeholder="Etkinlik açıklamasını girin"
+                style={{
+                  fontSize: "16px",
+                  padding: "10px",
+                  borderRadius: "8px",
+                  width: "100%",
+                }}
+              />
+            </Form.Item>
+          </Form>
+        </div>
+      ),
+    },
   ];
 
   return (
     <div className="event-creation-wrapper">
-      <Button
-        className="back-button"
-        type="link"
-        onClick={() => navigate(-1)}
-      >
+      <Button className="back-button" type="link" onClick={() => navigate(-1)}>
         ← Geri
       </Button>
       <h1 className="event-creation-title">Etkinlik Oluşturma</h1>
@@ -141,12 +143,18 @@ const EventCreation = () => {
                 Sonraki
               </Button>
             )}
-            {currentStep === steps.length - 1 && (
-              <Button type="primary">Bitir</Button>
-            )}
+            {currentStep === steps.length - 1 && <Button type="primary">Bitir</Button>}
           </div>
         </div>
       </div>
+      {/* Avatar Alt Sol Kısım */}
+      <div className="cute-avatar-wrapper">
+  <img src="/assets/cute-avatar.png" alt="Cute Avatar" className="cute-avatar" />
+  <div className="cute-avatar-text">
+    <p className="line1">👋 Merhaba!</p>
+    <p className="line2">Haydi birlikte harika bir etkinlik oluşturalım! 🌟🎉</p>
+  </div>
+</div>
     </div>
   );
 };

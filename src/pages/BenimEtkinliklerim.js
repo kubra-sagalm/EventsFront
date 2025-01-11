@@ -72,7 +72,7 @@ const BenimEtkinliklerim = () => {
             className="create-course-btn"
             onClick={() => navigate("/event-creation")} // Bu buton yönlendirme yapıyor
           >
-            Create a New Course
+            ETKİNLİK OLUŞTURMA
           </button>
         </div>
       </div>
