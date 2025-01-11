@@ -77,7 +77,7 @@
 }
 
 .listings {
-  width: 65%; /* Listings kısmı genişletildi */
+  width: 100%; /* Listings kısmı tam genişlik */
   max-height: 600px; /* Maksimum yükseklik belirlendi */
   overflow-y: auto; /* Dikey kaydırma aktif */
   background-color: #f9f9f9;
@@ -87,22 +87,22 @@
 }
 
 .details {
-  width: 30%; /* Details kısmı daha dar */
-  max-height: 600px; /* Maksimum yükseklik belirlendi */
+  position: absolute; /* Sabit pencere için */
+  top: 0;
+  right: 0;
+  width: 30%; /* Details kısmı genişlik */
+  height: 100%; /* Ekranın tamamını kaplar */
   background-color: #f9f9f9;
-  border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-  /* Başlangıçta gizli */
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.5s ease-in-out;
+  border-radius: 10px 0 0 10px;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%); /* Gizli başlar */
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
+  overflow-y: auto; /* Detay paneli kaydırılabilir */
 }
 
 /* Details aktif olduğunda */
 .details.active {
-  opacity: 1;
   transform: translateX(0); /* Sağdan gelir */
 }
 

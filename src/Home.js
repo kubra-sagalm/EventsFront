@@ -6,10 +6,19 @@ import DetailPanel from "./components/DetailPanel";
 import "./Home.css";
 
 const Home = () => {
-  const [selectedListing, setSelectedListing] = useState(null);
+  const [selectedListing, setSelectedListing] = useState(null); // Seçilen öğeyi tutar
+  const [isDetailPanelVisible, setDetailPanelVisible] = useState(false); // Detay panelinin görünürlüğünü kontrol eder
 
   const handleListingClick = (listing) => {
-    setSelectedListing(listing); // Tıklanan öğeyi güncelle
+    if (selectedListing === listing) {
+      // Aynı öğeye tıklandığında detay panelini kapat
+      setSelectedListing(null);
+      setDetailPanelVisible(false);
+    } else {
+      // Farklı bir öğeye tıklandığında detay panelini aç
+      setSelectedListing(listing);
+      setDetailPanelVisible(true);
+    }
   };
 
   return (
@@ -24,11 +33,14 @@ const Home = () => {
 
         {/* Liste ve Ayrıntı Paneli */}
         <div className="content-wrapper">
+          {/* Listeleme Kısmı */}
           <Listing onListingClick={handleListingClick} />
 
           {/* Details kısmı sadece bir öğe seçildiğinde aktif olacak */}
-          <div className={`details ${selectedListing ? "active" : ""}`}>
-            {selectedListing && <DetailPanel selectedListing={selectedListing} />}
+          <div className={`details ${isDetailPanelVisible ? "active" : ""}`}>
+            {isDetailPanelVisible && selectedListing && (
+              <DetailPanel selectedListing={selectedListing} />
+            )}
           </div>
         </div>
       </div>
