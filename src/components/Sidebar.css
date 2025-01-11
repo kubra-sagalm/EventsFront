@@ -1,43 +1,59 @@
-.sidebar {
-  width: 15%; /* Sol tarafın genişliği */
-  height: 100vh; /* Tam ekran yüksekliği */
-  background: #2c3e50; /* Sidebar arka plan rengi */
+.sidebar-container {
+  width: 20%;
+  background-color: #2c3e50;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px; /* Üstten boşluk */
-  position: fixed; /* Sayfada sabit */
-  top: 0;
-  left: 0;
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar .logo {
-  font-size: 28px;
+.logo {
+  font-size: 24px;
   font-weight: bold;
-  text-align: center;
-  margin-bottom: 50px; /* Logo ile menü arasında boşluk */
+  margin-bottom: 30px;
 }
 
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-  width: 100%; /* Tam genişlik */
-  display: flex;
-  flex-direction: column; /* Dikey hizalama */
-  gap: 15px; /* Menü öğeleri arasında boşluk */
+.sidebar-section {
+  width: 100%;
+  margin-bottom: 40px; /* Bölümler arasında boşluk */
 }
 
-.sidebar nav ul li {
-  margin: 0;
-  padding: 15px;
-  text-align: center;
-  background: #34495e; /* Menü arka planı */
+.sidebar-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.sidebar-button {
+  width: 100%;
+  background-color: #34495e;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px 0;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  text-align: left;
+  padding-left: 10px;
 }
 
-.sidebar nav ul li:hover {
-  background: #1abc9c; /* Hover efekti */
+.sidebar-button:hover {
+  background-color: #1abc9c;
+}
+
+.sidebar-footer {
+  margin-top: auto; /* Profil butonunu en alta iter */
+  width: 100%;
+}
+
+.profile-button {
+  background-color: #1abc9c;
+  color: white;
+  font-weight: bold;
 }
