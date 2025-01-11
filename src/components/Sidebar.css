@@ -1,59 +1,54 @@
+/* Fare algılama alanı */
+.hover-zone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px; /* Küçük ama yeterli bir genişlik */
+  height: 100%;
+  z-index: 100; /* Sidebar'dan daha yukarıda */
+  background-color: transparent; /* Görünmez */
+}
+
+/* Sidebar başlangıçta ekran dışında */
 .sidebar-container {
-  width: 20%;
+  position: fixed;
+  top: 0;
+  left: -220px; /* Tamamen ekran dışında */
+  width: 200px;
+  height: 100%;
   background-color: #2c3e50;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  height: 100vh;
+  padding: 20px 10px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
-.logo {
+/* Fare hover-zone alanına geldiğinde görünür */
+.sidebar-container.visible {
+  left: 0;
+}
+
+/* Sidebar içerikleri */
+.sidebar-container h1 {
+  margin-bottom: 20px;
   font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 30px;
 }
 
-.sidebar-section {
-  width: 100%;
-  margin-bottom: 40px; /* Bölümler arasında boşluk */
-}
-
-.sidebar-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: left;
-  width: 100%;
-  padding-left: 10px;
-}
-
-.sidebar-button {
-  width: 100%;
+.sidebar-container button {
+  margin: 10px 0;
+  padding: 10px 15px;
+  width: 90%;
   background-color: #34495e;
-  color: white;
   border: none;
-  padding: 10px;
-  margin: 5px 0;
   border-radius: 5px;
-  cursor: pointer;
-  text-align: left;
-  padding-left: 10px;
-}
-
-.sidebar-button:hover {
-  background-color: #1abc9c;
-}
-
-.sidebar-footer {
-  margin-top: auto; /* Profil butonunu en alta iter */
-  width: 100%;
-}
-
-.profile-button {
-  background-color: #1abc9c;
   color: white;
-  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-container button:hover {
+  background-color: #1abc9c;
 }

@@ -1,30 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 
 const Sidebar = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true); // Fare sol kenara geldiğinde Sidebar'ı göster
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false); // Fare sol kenardan ayrıldığında Sidebar'ı gizle
+  };
+
   return (
-    <div className="sidebar-container">
-      <h2 className="logo">Logo</h2>
+    <>
+      {/* Görünmez geniş bir alan sol kenarda fareyi algılamak için */}
+      <div
+        className="hover-zone"
+        onMouseEnter={handleMouseEnter}
+      ></div>
 
-      {/* Etkinlikler Bölümü */}
-      <div className="sidebar-section">
-        <h3 className="sidebar-title">Etkinlikler</h3>
-        <button className="sidebar-button">Kayıt Olunan Etkinlikler</button>
-        <button className="sidebar-button">Benim Oluşturduğum Etkinlikler</button>
+      {/* Sidebar */}
+      <div
+        className={`sidebar-container ${isHovered ? "visible" : ""}`}
+        onMouseLeave={handleMouseLeave}
+      >
+        <h1>Logo</h1>
+        <button>Dashboard</button>
+        <button>Listings</button>
+        <button>Kayıt Olunan Etkinlikler</button>
+        <button>Benim Oluşturduğum Etkinlikler</button>
+        <button>Kayıt Olunan Kurslar</button>
+        <button>Benim Oluşturduğum Kurslar</button>
+        <button>Profil</button>
       </div>
-
-      {/* Kurslar Bölümü */}
-      <div className="sidebar-section">
-        <h3 className="sidebar-title">Kurslar</h3>
-        <button className="sidebar-button">Kayıt Olunan Kurslar</button>
-        <button className="sidebar-button">Benim Oluşturduğum Kurslar</button>
-      </div>
-
-      {/* Profil Bölümü */}
-      <div className="sidebar-footer">
-        <button className="sidebar-button profile-button">Profil</button>
-      </div>
-    </div>
+    </>
   );
 };
 

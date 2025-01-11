@@ -6,25 +6,38 @@ import DetailPanel from "./components/DetailPanel";
 import "./Home.css";
 
 const Home = () => {
+  const [isSidebarVisible, setSidebarVisible] = useState(false); // Sidebar görünürlüğü
   const [selectedListing, setSelectedListing] = useState(null); // Seçilen öğeyi tutar
-  const [isDetailPanelVisible, setDetailPanelVisible] = useState(false); // Detay panelinin görünürlüğünü kontrol eder
+  const [isDetailPanelVisible, setDetailPanelVisible] = useState(false); // Detay paneli kontrolü
 
   const handleListingClick = (listing) => {
     if (selectedListing === listing) {
-      // Aynı öğeye tıklandığında detay panelini kapat
       setSelectedListing(null);
       setDetailPanelVisible(false);
     } else {
-      // Farklı bir öğeye tıklandığında detay panelini aç
       setSelectedListing(listing);
       setDetailPanelVisible(true);
     }
   };
 
+  const handleMouseMove = (event) => {
+    const { clientX } = event; // Farenin X pozisyonu
+    if (clientX < 50) {
+      // Fare sol sınıra yakınsa Sidebar'ı göster
+      setSidebarVisible(true);
+    } else if (isSidebarVisible && clientX > 250) {
+      // Fare Sidebar'ın genişliği dışına çıkarsa Sidebar'ı gizle
+      setSidebarVisible(false);
+    }
+  };
+
   return (
-    <div className="home-container">
+    <div
+      className="home-container"
+      onMouseMove={handleMouseMove} // Fare hareketi ile Sidebar kontrolü
+    >
       {/* Sol Menü */}
-      <Sidebar />
+      <Sidebar isVisible={isSidebarVisible} />
 
       {/* Ana İçerik ve Sağ Panel */}
       <div className="main-content">

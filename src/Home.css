@@ -3,11 +3,17 @@
   display: flex;
   height: 100vh; /* Tam ekran yüksekliği */
   background-color: #f6f5f7;
+  position: relative;
+  overflow: hidden; /* Fare çıktığında sidebar kaybolsun diye */
 }
 
-/* Sidebar sabit sol tarafa yerleştirildi */
+/* Sidebar gizli başlar ve fareyle üzerine gelindiğinde açılır */
 .sidebar-container {
-  width: 20%; /* Sol kısım genişliği */
+  position: absolute;
+  top: 0;
+  left: -20%; /* Başlangıçta tamamen gizli */
+  width: 20%; /* Sidebar genişliği */
+  height: 100%; /* Tam ekran yüksekliği */
   background-color: #2c3e50;
   color: white;
   display: flex;
@@ -16,12 +22,23 @@
   padding-top: 20px;
   padding-bottom: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  z-index: 200;
 }
 
-/* Orta Alan (Logo kısmından sonra kalan genişlik) */
+/* Sidebar görünür olduğunda */
+.sidebar-container.visible {
+  left: 0; /* Görünür hale gelir */
+}
+
+/* Sidebar'ın sağ sınırına fare çıktığında kaybolması */
+.sidebar-container.hide {
+  left: -20%; /* Geri gizlenir */
+}
+
+/* Orta Alan (Sidebar genişliği dışında kalan içerik) */
 .main-content {
-  width: 80%; /* Sidebar genişliği ile hizalandı */
-  margin-left: auto; /* Sidebar ile hizayı korumak için otomatik sola boşluk */
+  width: 100%; /* Tüm genişlik */
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -29,6 +46,12 @@
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Sidebar görünür olduğunda ana içerik kayar */
+.sidebar-container.visible ~ .main-content {
+  margin-left: 20%; /* Sidebar genişliği kadar kaydır */
 }
 
 /* Arama Çubuğu */

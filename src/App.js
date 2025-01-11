@@ -5,6 +5,7 @@ import SignInForm from "./Login/SignInForm";
 import SignUpForm from "./Login/SignUpForm";
 import Footer from "./Footer";
 import Home from "./Home"; // Ana Sayfa Bileşeni
+import MyEvents from "./pages/MyEvents"; // Yeni Sayfa Bileşeni
 
 function App() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -57,6 +58,9 @@ function App() {
 
         {/* Ana Sayfa */}
         <Route path="/home" element={<Home />} />
+
+        {/* Benim Oluşturduğum Etkinlikler Sayfası */}
+        <Route path="/my-events" element={<MyEvents />} />
       </Routes>
     </Router>
   );
