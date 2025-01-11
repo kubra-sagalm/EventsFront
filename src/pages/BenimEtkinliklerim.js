@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Yönlendirme için ekledik
 import "./BenimEtkinliklerim.css";
 
 const BenimEtkinliklerim = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isDetailPanelVisible, setDetailPanelVisible] = useState(false);
+  const navigate = useNavigate(); // useNavigate'i kullanıyoruz
 
   const courses = [
     {
@@ -26,29 +28,27 @@ const BenimEtkinliklerim = () => {
       rating: 4,
       image: "https://foundr.com/wp-content/uploads/2023/04/How-to-create-an-online-course.jpg.webp",
     },
-    // Daha fazla örnek eklenebilir...
   ];
 
   const handleLearnMore = (course) => {
     setSelectedCourse(course);
-    setDetailPanelVisible(true); // Detay panelini göster
+    setDetailPanelVisible(true);
   };
 
   const handleClosePanel = () => {
-    setDetailPanelVisible(false); // Detay panelini gizle
+    setDetailPanelVisible(false);
   };
 
-  // Rating'i yıldız sembolleriyle gösteren fonksiyon
   const renderStars = (rating) => {
-    const fullStars = Math.floor(rating); // Tam yıldızlar
-    const halfStar = rating % 1 >= 0.5; // Yarım yıldız kontrolü
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // Boş yıldızlar
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
     return (
       <div className="stars">
         {"⭐".repeat(fullStars)}
-        {halfStar && "⭐️"} {/* Yarım yıldız */}
-        {"☆".repeat(emptyStars)} {/* Boş yıldız */}
+        {halfStar && "⭐️"}
+        {"☆".repeat(emptyStars)}
       </div>
     );
   };
@@ -68,7 +68,12 @@ const BenimEtkinliklerim = () => {
               <option value="rating">Rating</option>
             </select>
           </div>
-          <button className="create-course-btn">Create a New Course</button>
+          <button
+            className="create-course-btn"
+            onClick={() => navigate("/event-creation")} // Bu buton yönlendirme yapıyor
+          >
+            Create a New Course
+          </button>
         </div>
       </div>
       <div className="courses-grid">
@@ -93,7 +98,6 @@ const BenimEtkinliklerim = () => {
         ))}
       </div>
 
-      {/* Sağdan kayan detay paneli */}
       <div
         className={`detail-panel ${isDetailPanelVisible ? "visible" : ""}`}
       >
@@ -103,10 +107,18 @@ const BenimEtkinliklerim = () => {
               ✖
             </button>
             <h2>{selectedCourse.title}</h2>
-            <p><strong>Instructor:</strong> {selectedCourse.instructor}</p>
-            <p><strong>Lessons:</strong> {selectedCourse.lessons}</p>
-            <p><strong>Category:</strong> {selectedCourse.category}</p>
-            <p><strong>Students:</strong> {selectedCourse.students}</p>
+            <p>
+              <strong>Instructor:</strong> {selectedCourse.instructor}
+            </p>
+            <p>
+              <strong>Lessons:</strong> {selectedCourse.lessons}
+            </p>
+            <p>
+              <strong>Category:</strong> {selectedCourse.category}
+            </p>
+            <p>
+              <strong>Students:</strong> {selectedCourse.students}
+            </p>
             <p>
               <strong>Rating:</strong> {renderStars(selectedCourse.rating)}
             </p>

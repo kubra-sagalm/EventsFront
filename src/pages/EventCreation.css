@@ -1,0 +1,111 @@
+.event-creation-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #e0e0e0, #c5cae9, #9575cd); /* Griyle karışık mor */
+    min-height: 100vh;
+    padding-top: 50px;
+  }
+  
+  
+  
+  .event-creation-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #120461; /* Modern mor başlık */
+    text-align: center;
+    width: 80%;
+  }
+  
+  .event-creation-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .event-creation-card {
+    background-color: #ffffff; /* Beyaz kart içi */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  .steps-content {
+    margin: 20px 0;
+  }
+  
+  .steps-action {
+    text-align: right;
+  }
+  
+  .ant-steps-item-process .ant-steps-item-icon {
+    background-color: #29b6f6 !important; /* Turkuaz işaret rengi */
+    border-color: #29b6f6 !important;
+  }
+  
+  .ant-steps-item-process .ant-steps-item-title {
+    color: #424242 !important; /* Siyahın yumuşak tonu */
+  }
+  
+  button {
+    background-color: #6a1b9a !important; /* Modern mor buton */
+    color: #fff !important;
+    border: none !important;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #8e24aa !important; /* Daha canlı mor hover rengi */
+  }
+  
+  .inner-content {
+    background-color: #e3f2fd; /* Hafif açık mavi tonu */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .ant-form-item-label label {
+    font-size: 16px;
+    color: #424242;
+  }
+  
+  .ant-input,
+  .ant-select-selector,
+  .ant-picker {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .ant-input:focus,
+  .ant-select-selector:focus,
+  .ant-picker:focus {
+    height: 50px; /* Giriş alanı yüksekliği artırıldı */
+  font-size: 16px; /* Yazı boyutu büyütüldü */
+  border-radius: 8px; /* Kenar yuvarlatıldı */
+  }
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .ant-input-textarea {
+    font-size: 16px;
+    height: auto; /* Yüksekliği içeriğe göre otomatik ayarla */
+    padding: 12px;
+    border-radius: 8px;
+    resize: both; /* Hem yatay hem dikey yeniden boyutlandırılabilir */
+    width: 100%; /* Yatayda tam genişlik */
+    max-width: 800px; /* Maksimum genişlik (isteğe bağlı) */
+  }
+  
+  .ant-input-textarea:focus {
+    border-color: #6a1b9a;
+    box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
+  }
+  
