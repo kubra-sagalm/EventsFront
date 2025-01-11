@@ -6,19 +6,19 @@ const listings = [
     id: 1,
     title: "132 Richmond",
     description: "Avg review 4.2, 423 WW",
-    image: "https://via.placeholder.com/150",
+    image: "https://www.globalcareercounsellor.com/blog/wp-content/uploads/2018/05/Online-Career-Counselling-course.jpg",
   },
   {
     id: 2,
     title: "6 Fremont Street",
     description: "Avg review 4.8, 312 WW",
-    image: "https://via.placeholder.com/150",
+    image: "https://img.freepik.com/free-vector/development-strategy-online-service-platform-business-planning-idea-company-promotion-online-course-isolated-flat-illustration_613284-272.jpg?semt=ais_hybrid",
   },
   {
     id: 3,
     title: "84 Vista Street",
     description: "Avg review 4.5, 290 WW",
-    image: "https://via.placeholder.com/150",
+    image: "https://blogassets.leverageedu.com/blog/wp-content/uploads/2020/05/23151218/BA-Courses.png",
   },
 ];
 
