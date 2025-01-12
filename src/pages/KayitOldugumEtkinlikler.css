@@ -1,0 +1,82 @@
+.kayit-oldugum-etkinlikler-container {
+    padding: 20px;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .events-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .event-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  .event-details {
+    padding: 15px;
+  }
+  
+  .event-details h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #0c0c4a;
+  }
+  
+  .event-details p {
+    margin-bottom: 5px;
+    color: #110f0f;
+  }
+  
+  .learn-more-btn {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .learn-more-btn:hover {
+    background-color: #5a4db8;
+  }
+  
+  .detail-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    padding: 20px;
+  }
+  
+  .detail-panel.visible {
+    transform: translateX(0);
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    float: right;
+  }
+  

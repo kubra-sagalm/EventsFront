@@ -9,39 +9,45 @@ const Sidebar = ({ isVisible, onMouseEnter, onMouseLeave }) => {
     onMouseEnter={onMouseEnter} // Fare sidebar'a girdiğinde
     onMouseLeave={onMouseLeave} // Fare sidebar'dan çıktığında
     >
-      <h1>Logo</h1>
-      <div className="sidebar-section">
-        <h2>Etkinlikler</h2>
-        <ul>
-          <li>
-            <Link to="/kayit-olunan-etkinlikler">Kayıt olunan etkinlikler</Link>
-          </li>
-          <li>
-            <Link to="/benim-etkinliklerim">Benim oluşturduğum etkinlikler</Link>
-          </li>
-        </ul>
+      <div className="sidebar-header">
+        <h1 className="logo">EtkinliX</h1>
       </div>
-      <div className="sidebar-section">
-        <h2>Kurslar</h2>
-        <ul>
-          <li>
-            <Link to="/kayit-olunan-kurslar">Kayıt olunan kurslar</Link>
-          </li>
-          <li>
-            <Link to="/benim-kurslarim">Benim oluşturduğum kurslar</Link>
-          </li>
-        </ul>
+      <div className="sidebar-content">
+        <div className="sidebar-section">
+          <h2>Etkinlikler</h2>
+          <ul className="sidebar-list">
+            <li>
+              <Link to="/kayit-olunan-etkinlikler" className="sidebar-link">Kayıt olunan etkinlikler</Link>
+            </li>
+            <li>
+              <Link to="/benim-etkinliklerim" className="sidebar-link">Benim oluşturduğum etkinlikler</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="sidebar-section">
+          <h2>Kurslar</h2>
+          <ul className="sidebar-list">
+            <li>
+              <Link to="/kayit-olunan-kurslar" className="sidebar-link">Kayıt olunan kurslar</Link>
+            </li>
+            <li>
+              <Link to="/benim-kurslarim" className="sidebar-link">Benim oluşturduğum kurslar</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="sidebar-section">
+          <h2>
+            <Link to="/profil" className="sidebar-link">Profil</Link>
+          </h2>
+        </div>
       </div>
-      <div className="sidebar-section">
-        <h2>
-          <Link to="/profil">Profil</Link>
-        </h2>
-      </div>
-      {/* Anasayfa Butonu */}
-      <div className="sidebar-home-button">
-        <Link to="/home" className="home-link">
-          Anasayfa
-        </Link>
+      <div className="sidebar-footer">
+        <div className="sidebar-home-button">
+          <Link to="/home" className="home-link">
+            <span className="home-icon" style={{ fontSize: "24px", marginRight: "8px" }}>🏠</span>
+            Anasayfa
+          </Link>
+        </div>
       </div>
     </div>
   );

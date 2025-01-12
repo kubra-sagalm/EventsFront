@@ -6,8 +6,10 @@ import SignUpForm from "./Login/SignUpForm";
 import Footer from "./Footer";
 import Home from "./Home";
 import BenimEtkinliklerim from "./pages/BenimEtkinliklerim";
+import KayitOldugumEtkinlikler from "./pages/KayitOldugumEtkinlikler"; // Kayıt olunan etkinlikler bileşeni import edildi
 import Layout from "./components/Layout";
 import EventCreation from "./pages/EventCreation"; // EventCreation bileşeni import edildi
+import BenimKurslarım from "./Kurslar/BenimKurslarım";
 
 function App() {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -94,6 +96,28 @@ function App() {
               onMouseMove={handleMouseMove}
             >
               <BenimEtkinliklerim />
+            </Layout>
+          }
+        />
+        <Route
+  path="/benim-kurslarim"
+  element={
+    <Layout
+      isSidebarVisible={isSidebarVisible}
+      onMouseMove={handleMouseMove}
+    >
+      <BenimKurslarım />
+    </Layout>
+  }
+/>
+        <Route
+          path="/kayit-olunan-etkinlikler" // Yeni rota Kayıt olunan etkinlikler için
+          element={
+            <Layout
+              isSidebarVisible={isSidebarVisible}
+              onMouseMove={handleMouseMove}
+            >
+              <KayitOldugumEtkinlikler />
             </Layout>
           }
         />
