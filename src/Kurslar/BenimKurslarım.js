@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, Button, Rate, Spin, Empty } from "antd";
 import axios from "axios";
 import "./BenimKurslarım.css";
+import { Color } from "antd/es/color-picker";
 
 const BenimKurslarım = () => {
   const [courses, setCourses] = useState([]);
@@ -21,7 +22,7 @@ const BenimKurslarım = () => {
         lessons: "20 Ders",
         students: "150+ Öğrenci",
         rating: 4.8,
-        image: "https://miro.medium.com/v2/resize:fit:1400/0*ECzYttBdIGxUbhOW.png",
+        image: "https://www.indyturk.com/sites/default/files/styles/1368x911/public/article/main_image/2019/10/24/194256-82855996.jpg?itok=aWnWkU0t",
       },
       {
         id: 2,
@@ -30,7 +31,34 @@ const BenimKurslarım = () => {
         lessons: "15 Ders",
         students: "100+ Öğrenci",
         rating: 4.5,
-        image: "https://kinsta.com/wp-content/uploads/2024/01/wp-advanced-css-techniques-1024x536.jpg",
+        image: "https://blog.rehberlik.online/wp-content/uploads/2020/02/ders-çalışma-scaled.jpg",
+      },
+      {
+        id: 3,
+        title: "JavaScript Essentials",
+        category: "Programming",
+        lessons: "12 Ders",
+        students: "120+ Öğrenci",
+        rating: 4.6,
+        image: "https://abaegitim.com/wp-content/uploads/ders-calisma.jpeg",
+      },
+      {
+        id: 4,
+        title: "Python for Data Science",
+        category: "Data Science",
+        lessons: "18 Ders",
+        students: "200+ Öğrenci",
+        rating: 4.7,
+        image: "https://i.tmgrup.com.tr/fikriyat/album/2020/02/05/verimli-ders-calisma-teknikleri-hakkinda-ornekler-verimli-ders-calisma-programi-nasil-hazirlanir-1580905241182.jpg",
+      },
+      {
+        id: 5,
+        title: "Machine Learning Basics",
+        category: "AI",
+        lessons: "22 Ders",
+        students: "170+ Öğrenci",
+        rating: 4.9,
+        image: "https://nerminahmethasogluortaokulu.meb.k12.tr/meb_iys_dosyalar/34/40/739670/resimler/2018_12/k_14083942_IMG_20150610_174114.jpg",
       },
     ];
     setCourses(fakeCourses);
@@ -53,12 +81,23 @@ const BenimKurslarım = () => {
   return (
     <div className="benim-kurslarım-container">
       <div className="benim-kurslarım-header">
-        <div className="course-count">
-        <div className="header">
-        <h3> BENİM KURSLARIM </h3>
-        <p>   </p>
-      </div>
-        </div>
+      <div
+  className="course-count"
+  style={{
+    display: "flex",
+    justifyContent: "center", // Yatayda ortalamak için
+    alignItems: "center",    // Dikeyde ortalamak için
+    marginBottom: "20px",
+    textAlign: "center",
+    width: "100%",           // Genişliği tamamen kaplaması için
+  }}
+>
+  <h3 style={{ margin: 0,fontSize: "24px",color: "black" }}>BENİM KURSLARIM</h3>
+</div>
+
+
+
+
         <Button
           type="primary"
           onClick={() => navigate("/course-creation")}
@@ -66,7 +105,7 @@ const BenimKurslarım = () => {
           Kurs Oluştur
         </Button>
       </div>
-      <div className="courses-grid">
+      <div className="courses-grid" style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
         {courses.length > 0 ? (
           courses.map((course) => (
             <Card
@@ -74,6 +113,7 @@ const BenimKurslarım = () => {
               hoverable
               cover={<img alt={course.title} src={course.image} />}
               className="course-card"
+              style={{ width: "300px" }}
             >
               <Card.Meta
                 title={course.title}

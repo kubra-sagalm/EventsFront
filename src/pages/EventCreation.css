@@ -115,7 +115,7 @@ button:hover {
 .cute-avatar-wrapper {
     position: fixed;
     bottom: 80px; /* Alt kenardan mesafe */
-    left: 70px; /* Sol kenardan mesafe */
+    left: 50px; /* Sol kenardan mesafe */
     z-index: 1000;
     display: flex; /* Flexbox ile yatay hizalama */
     align-items: center; /* Yazıyı ve avatarı dikey ortala */

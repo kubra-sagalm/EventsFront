@@ -10,6 +10,9 @@ import KayitOldugumEtkinlikler from "./pages/KayitOldugumEtkinlikler"; // Kayıt
 import Layout from "./components/Layout";
 import EventCreation from "./pages/EventCreation"; // EventCreation bileşeni import edildi
 import BenimKurslarım from "./Kurslar/BenimKurslarım";
+import CourseCreation from "./Kurslar/CourseCreation";
+import KayitOldugumKurslar from "./Kurslar/KayitOldugumKurslar";
+import EtkinlikDetayi from "./pages/EtkinlikDetayi";
 
 function App() {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -88,6 +91,7 @@ function App() {
             </Layout>
           }
         />
+        <Route path="/course-creation" element={<CourseCreation />} />
         <Route
           path="/benim-etkinliklerim"
           element={
@@ -132,6 +136,19 @@ function App() {
             </Layout>
           }
         />
+         <Route
+    path="/kayit-olunan-kurslar" // Yeni rota
+    element={
+      <Layout
+        isSidebarVisible={isSidebarVisible}
+        onMouseMove={handleMouseMove}
+      >
+        <KayitOldugumKurslar />
+      </Layout>
+    }
+  />
+  <Route path="/etkinlik-detayi/:id" element={<EtkinlikDetayi />} />
+
       </Routes>
     </Router>
   );

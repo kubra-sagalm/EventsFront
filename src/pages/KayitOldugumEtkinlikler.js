@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Yönlendirme için
 import "./KayitOldugumEtkinlikler.css";
 
 const KayitOldugumEtkinlikler = () => {
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [isDetailPanelVisible, setDetailPanelVisible] = useState(false);
+  const navigate = useNavigate();
 
   // Fake etkinlik verileri
   const events = [
@@ -15,7 +15,8 @@ const KayitOldugumEtkinlikler = () => {
       location: "İstanbul, Türkiye",
       participants: "200+ Katılımcı",
       status: "Onaylı",
-      image: "https://www.deryauluduz.com/wp-content/uploads/2024/05/yapay-zeka-ile-insan-beyni-arasindaki-cilgin-benzerlikler.jpg", // Web'den bir resim URL'si
+      description: "Bu etkinlik yapay zeka alanındaki en son gelişmeleri içerir.",
+      image: "https://www.deryauluduz.com/wp-content/uploads/2024/05/yapay-zeka-ile-insan-beyni-arasindaki-cilgin-benzerlikler.jpg",
     },
     {
       id: 2,
@@ -25,29 +26,23 @@ const KayitOldugumEtkinlikler = () => {
       location: "Ankara, Türkiye",
       participants: "150+ Katılımcı",
       status: "Onaylı",
-      image: "https://ia.tmgrup.com.tr/3fd6a8/666/400/81/0/1307/736?u=https://i.tmgrup.com.tr/prdrg/2024/03/05/yapay-zeka-caginda-girisimcilik-konusuldu-1709637176059.jpg", // Web'den bir resim URL'si
+      description: "Girişimciler ve yatırımcılar için özel bir etkinlik.",
+      image: "https://ia.tmgrup.com.tr/3fd6a8/666/400/81/0/1307/736?u=https://i.tmgrup.com.tr/prdrg/2024/03/05/yapay-zeka-caginda-girisimcilik-konusuldu-1709637176059.jpg",
     },
   ];
 
   const handleLearnMore = (event) => {
-    setSelectedEvent(event);
-    setDetailPanelVisible(true);
-  };
-
-  const handleClosePanel = () => {
-    setDetailPanelVisible(false);
+    navigate(`/etkinlik-detayi/${event.id}`, { state: event });
   };
 
   return (
     <div className="kayit-oldugum-etkinlikler-container">
       <div className="header">
         <h3>KAYIT OLUNAN ETKİNLİKLER</h3>
-        <p>   </p>
       </div>
       <div className="events-grid">
         {events.map((event) => (
           <div key={event.id} className="event-card">
-            {/* Web'den alınan resmi burada görüntülüyoruz */}
             <img src={event.image} alt={event.title} className="event-image" />
             <div className="event-details">
               <h4>{event.title}</h4>
@@ -60,9 +55,6 @@ const KayitOldugumEtkinlikler = () => {
               <p>
                 <strong>Yer:</strong> {event.location}
               </p>
-              <p>
-                <strong>Katılımcılar:</strong> {event.participants}
-              </p>
               <button
                 className="learn-more-btn"
                 onClick={() => handleLearnMore(event)}
@@ -72,34 +64,6 @@ const KayitOldugumEtkinlikler = () => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className={`detail-panel ${isDetailPanelVisible ? "visible" : ""}`}>
-        {selectedEvent && (
-          <div className="detail-content">
-            <button className="close-btn" onClick={handleClosePanel}>
-              ✖
-            </button>
-            <h2>{selectedEvent.title}</h2>
-            <p>
-              <strong>Düzenleyen:</strong> {selectedEvent.organizer}
-            </p>
-            <p>
-              <strong>Tarih:</strong> {selectedEvent.date}
-            </p>
-            <p>
-              <strong>Yer:</strong> {selectedEvent.location}
-            </p>
-            <p>
-              <strong>Katılımcılar:</strong> {selectedEvent.participants}
-            </p>
-            <img
-              src={selectedEvent.image}
-              alt={selectedEvent.title}
-              className="detail-image"
-            />
-          </div>
-        )}
       </div>
     </div>
   );

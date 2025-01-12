@@ -1,0 +1,137 @@
+/* Genel Kapsayıcı */
+.course-creation-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #f0f4f7, #d9e8fc); /* Yumuşak mavi tonlar */
+    min-height: 100vh; /* Tam ekran yüksekliği */
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  /* Başlık */
+  .course-creation-title {
+    font-size: 36px; /* Büyük ve dikkat çekici */
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #333; /* Siyahın yumuşak tonu */
+    text-align: center;
+  }
+  
+  /* Ana Konteyner */
+  .course-creation-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  /* Kart Stili */
+  .course-creation-card {
+    background-color: #ffffff; /* Beyaz zemin */
+    border-radius: 12px; /* Yuvarlatılmış köşeler */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  /* Ant Design Adımları */
+  .ant-steps {
+    margin-bottom: 30px;
+  }
+  
+  .ant-steps-item-title {
+    font-size: 14px;
+    color: #555; /* Daha okunabilir yazı */
+  }
+  
+  .ant-steps-item-process .ant-steps-item-icon {
+    background-color: #409eff !important; /* İşlemde olan adım için mavi renk */
+    border-color: #409eff !important;
+  }
+  
+  .ant-steps-item-process .ant-steps-item-title {
+    color: #409eff !important; /* İşlemde olan başlık rengi */
+  }
+  
+  /* Adım İçeriği */
+  .steps-content {
+    margin: 20px 0;
+  }
+  
+  /* Adım Eylemleri */
+  .steps-action {
+    text-align: right;
+    margin-top: 20px;
+  }
+  
+  /* Geri Butonu */
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    color: #409eff;
+  }
+  
+  /* Form Alanları */
+  .ant-form-item {
+    margin-bottom: 20px;
+  }
+  
+  .ant-form-item-label > label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .ant-input,
+  .ant-select-selector,
+  .ant-picker {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .ant-input:focus,
+  .ant-select-focused .ant-select-selector,
+  .ant-picker-focused {
+    border-color: #409eff; /* Odaklanmış alanlar için mavi */
+    box-shadow: 0 0 6px rgba(64, 158, 255, 0.3);
+  }
+  
+  /* Butonlar */
+  .ant-btn-primary {
+    background-color: #409eff;
+    border-color: #409eff;
+    font-weight: bold;
+  }
+  
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus {
+    background-color: #307ad6;
+    border-color: #307ad6;
+  }
+  
+  /* Metin Alanı */
+  .ant-input-textarea {
+    border-radius: 8px;
+  }
+  
+  /* Mobil Uyum */
+  @media (max-width: 768px) {
+    .course-creation-card {
+      padding: 20px;
+      width: 95%;
+    }
+  
+    .course-creation-title {
+      font-size: 28px;
+    }
+  
+    .back-button {
+      font-size: 14px;
+    }
+  }
+  

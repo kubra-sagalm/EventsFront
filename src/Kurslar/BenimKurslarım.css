@@ -7,6 +7,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    
   }
   
   .courses-grid {
@@ -52,5 +53,16 @@
     margin-bottom: 20px;
     text-align: center;
   }
+  .course-count {
+    display: flex;
+    justify-content: center; /* Yatayda ortalar */
+    align-items: center;    /* Dikeyde ortalar */
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;            /* Tam genişlikte */
+  }
+  
+  
+  
   
   

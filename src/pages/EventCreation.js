@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Steps, Form, Input, Button, Select, DatePicker } from "antd";
+import { Steps, Form, Input, Button, Select, DatePicker, Upload, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import "./EventCreation.css";
 
@@ -10,12 +11,8 @@ const { Option } = Select;
 const EventCreation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Animasyonu başlatmak için CSS sınıfını ekleyin
-    const text = document.querySelector(".cute-avatar-text");
-    text.classList.add("animated-text");
-  }, []);
+  const [form] = Form.useForm();
+  const [fileList, setFileList] = useState([]);
 
   const next = () => {
     setCurrentStep(currentStep + 1);
@@ -25,29 +22,46 @@ const EventCreation = () => {
     setCurrentStep(currentStep - 1);
   };
 
+  const onFinish = () => {
+    message.success("Etkinlik başarıyla oluşturuldu!");
+    navigate("/benim-etkinliklerim");
+  };
+
   const steps = [
     {
       title: "Genel Bilgi",
       content: (
         <div>
           <h3>Etkinlik Bilgileri</h3>
-          <Form layout="vertical">
-            <Form.Item label="Etkinlik Adı" name="eventName" required>
+          <Form layout="vertical" form={form}>
+            <Form.Item
+              label="Etkinlik Adı"
+              name="eventName"
+              rules={[{ required: true, message: "Lütfen etkinlik adını girin!" }]}
+            >
               <Input placeholder="Etkinlik adını girin" />
             </Form.Item>
-            <Form.Item label="Kategori" name="category" required>
-              <Input placeholder="Etkinlik kategorisini girin" />
+            <Form.Item
+              label="Kategori"
+              name="category"
+              rules={[{ required: true, message: "Lütfen kategori seçin!" }]}
+            >
+              <Select placeholder="Bir kategori seçin">
+                <Option value="Konferans">Konferans</Option>
+                <Option value="Workshop">Workshop</Option>
+                <Option value="Seminer">Seminer</Option>
+                <Option value="Eğitim">Eğitim</Option>
+              </Select>
             </Form.Item>
-            <Form.Item label="Maksimum Katılımcı Sayısı" name="maxParticipants" required>
+            <Form.Item
+              label="Maksimum Katılımcı Sayısı"
+              name="maxParticipants"
+              rules={[{ required: true, message: "Lütfen maksimum katılımcı sayısını girin!" }]}
+            >
               <Select placeholder="Katılımcı sayısını seçin">
                 <Option value="10-20">10-20</Option>
                 <Option value="20-30">20-30</Option>
                 <Option value="30-40">30-40</Option>
-                <Option value="40-50">40-50</Option>
-                <Option value="50-100">50-100</Option>
-                <Option value="100-150">100-150</Option>
-                <Option value="150-200">150-200</Option>
-                <Option value="200-300">200-300</Option>
               </Select>
             </Form.Item>
           </Form>
@@ -59,11 +73,19 @@ const EventCreation = () => {
       content: (
         <div>
           <h3>Etkinlik Zamanlaması</h3>
-          <Form layout="vertical">
-            <Form.Item label="Başlangıç Zamanı" name="startTime" required>
+          <Form layout="vertical" form={form}>
+            <Form.Item
+              label="Başlangıç Zamanı"
+              name="startTime"
+              rules={[{ required: true, message: "Başlangıç zamanını girin!" }]}
+            >
               <DatePicker showTime format="YYYY-MM-DD HH:mm" />
             </Form.Item>
-            <Form.Item label="Bitiş Zamanı" name="endTime" required>
+            <Form.Item
+              label="Bitiş Zamanı"
+              name="endTime"
+              rules={[{ required: true, message: "Bitiş zamanını girin!" }]}
+            >
               <DatePicker showTime format="YYYY-MM-DD HH:mm" />
             </Form.Item>
           </Form>
@@ -75,21 +97,49 @@ const EventCreation = () => {
       content: (
         <div>
           <h3>Etkinlik Konumu</h3>
-          <Form layout="vertical">
+          <Form layout="vertical" form={form}>
             <div style={{ display: "flex", gap: "20px" }}>
-              <Form.Item label="İl" name="city" style={{ flex: 1 }} required>
+              <Form.Item
+                label="İl"
+                name="city"
+                rules={[{ required: true, message: "Lütfen bir şehir seçin!" }]}
+                style={{ flex: 1 }}
+              >
                 <Select placeholder="Bir il seçin">
-                  <Option value="istanbul">İstanbul</Option>
-                  <Option value="ankara">Ankara</Option>
-                  <Option value="izmir">İzmir</Option>
-                  <Option value="antalya">Antalya</Option>
-                  <Option value="bursa">Bursa</Option>
+                  <Option value="İstanbul">İstanbul</Option>
+                  <Option value="Ankara">Ankara</Option>
+                  <Option value="İzmir">İzmir</Option>
                 </Select>
               </Form.Item>
-              <Form.Item label="Adres" name="address" style={{ flex: 2 }} required>
+              <Form.Item
+                label="Adres"
+                name="address"
+                rules={[{ required: true, message: "Lütfen adres girin!" }]}
+                style={{ flex: 2 }}
+              >
                 <Input placeholder="Etkinlik adresini girin" />
               </Form.Item>
             </div>
+          </Form>
+        </div>
+      ),
+    },
+    {
+      title: "Görsel Yükleme",
+      content: (
+        <div>
+          <h3>Etkinlik Görseli</h3>
+          <Form layout="vertical">
+            <Form.Item label="Görsel Yükle">
+              <Upload
+                beforeUpload={() => false}
+                fileList={fileList}
+                onChange={({ fileList: newFileList }) => setFileList(newFileList)}
+                accept="image/*"
+              >
+                <Button icon={<UploadOutlined />}>Fotoğraf Yükle</Button>
+              </Upload>
+            </Form.Item>
           </Form>
         </div>
       ),
@@ -99,8 +149,12 @@ const EventCreation = () => {
       content: (
         <div>
           <h3>Etkinlik Açıklaması</h3>
-          <Form layout="vertical">
-            <Form.Item label="Açıklama" name="description" required>
+          <Form layout="vertical" form={form} onFinish={onFinish}>
+            <Form.Item
+              label="Açıklama"
+              name="description"
+              rules={[{ required: true, message: "Lütfen açıklama girin!" }]}
+            >
               <TextArea
                 rows={6}
                 placeholder="Etkinlik açıklamasını girin"
@@ -143,18 +197,22 @@ const EventCreation = () => {
                 Sonraki
               </Button>
             )}
-            {currentStep === steps.length - 1 && <Button type="primary">Bitir</Button>}
+            {currentStep === steps.length - 1 && (
+              <Button type="primary" onClick={() => form.submit()}>
+                Bitir
+              </Button>
+            )}
           </div>
         </div>
       </div>
       {/* Avatar Alt Sol Kısım */}
       <div className="cute-avatar-wrapper">
-  <img src="/assets/cute-avatar.png" alt="Cute Avatar" className="cute-avatar" />
-  <div className="cute-avatar-text">
-    <p className="line1">👋 Merhaba!</p>
-    <p className="line2">Haydi birlikte harika bir etkinlik oluşturalım! 🌟🎉</p>
-  </div>
-</div>
+        <img src="/assets/cute-avatar.png" alt="Cute Avatar" className="cute-avatar" />
+        <div className="cute-avatar-text">
+          <p className="line1">👋 Merhaba!</p>
+          <p className="line2">Haydi birlikte harika bir etkinlik oluşturalım! 🌟🎉</p>
+        </div>
+      </div>
     </div>
   );
 };
