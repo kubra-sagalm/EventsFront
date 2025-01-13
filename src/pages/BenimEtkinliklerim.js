@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom"; // Yönlendirme için ekledik
 import "./BenimEtkinliklerim.css";
 
 const BenimEtkinliklerim = () => {
-  const [selectedCourse, setSelectedCourse] = useState(null);
-  const [isDetailPanelVisible, setDetailPanelVisible] = useState(false);
   const navigate = useNavigate(); // useNavigate'i kullanıyoruz
 
   const courses = [
@@ -17,6 +15,7 @@ const BenimEtkinliklerim = () => {
       students: "50+ Students",
       rating: 4.5,
       image: "https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png",
+      description: "This is a detailed description for the first course.",
     },
     {
       id: 2,
@@ -27,17 +26,9 @@ const BenimEtkinliklerim = () => {
       students: "50+ Students",
       rating: 4,
       image: "https://foundr.com/wp-content/uploads/2023/04/How-to-create-an-online-course.jpg.webp",
+      description: "This is a detailed description for the second course.",
     },
   ];
-
-  const handleLearnMore = (course) => {
-    setSelectedCourse(course);
-    setDetailPanelVisible(true);
-  };
-
-  const handleClosePanel = () => {
-    setDetailPanelVisible(false);
-  };
 
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
@@ -51,6 +42,11 @@ const BenimEtkinliklerim = () => {
         {"☆".repeat(emptyStars)}
       </div>
     );
+  };
+
+  const handleLearnMore = (course) => {
+    // KendiEtkinlikDetayi sayfasına yönlendirme
+    navigate(`/kendi-etkinlik-detayi/${course.id}`, { state: course });
   };
 
   return (
@@ -96,35 +92,6 @@ const BenimEtkinliklerim = () => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div
-        className={`detail-panel ${isDetailPanelVisible ? "visible" : ""}`}
-      >
-        {selectedCourse && (
-          <div className="detail-content">
-            <button className="close-btn" onClick={handleClosePanel}>
-              ✖
-            </button>
-            <h2>{selectedCourse.title}</h2>
-            <p>
-              <strong>Instructor:</strong> {selectedCourse.instructor}
-            </p>
-            <p>
-              <strong>Lessons:</strong> {selectedCourse.lessons}
-            </p>
-            <p>
-              <strong>Category:</strong> {selectedCourse.category}
-            </p>
-            <p>
-              <strong>Students:</strong> {selectedCourse.students}
-            </p>
-            <p>
-              <strong>Rating:</strong> {renderStars(selectedCourse.rating)}
-            </p>
-            <img src={selectedCourse.image} alt={selectedCourse.title} />
-          </div>
-        )}
       </div>
     </div>
   );

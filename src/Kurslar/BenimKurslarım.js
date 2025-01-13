@@ -66,9 +66,9 @@ const BenimKurslarım = () => {
   }, []);
 
   const handleLearnMore = (course) => {
-    setSelectedCourse(course);
-    setDetailPanelVisible(true);
+    navigate("/course-details", { state: course }); // Kurs detay sayfasına yönlendirme
   };
+  
 
   const handleClosePanel = () => {
     setDetailPanelVisible(false);

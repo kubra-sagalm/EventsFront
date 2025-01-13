@@ -13,7 +13,13 @@ import BenimKurslarım from "./Kurslar/BenimKurslarım";
 import CourseCreation from "./Kurslar/CourseCreation";
 import KayitOldugumKurslar from "./Kurslar/KayitOldugumKurslar";
 import EtkinlikDetayi from "./pages/EtkinlikDetayi";
+<<<<<<< Updated upstream
 import Profile from "./pages/Profile";
+=======
+import KendiEtkinlikDetayi from "./pages/KendiEtkinlikDetayi";
+import CourseDetails from "./Kurslar/CourseDetails";
+import CourseEdit from "./Kurslar/CourseEdit";
+>>>>>>> Stashed changes
 
 function App() {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -117,6 +123,9 @@ function App() {
           }
         />
         <Route path="/etkinlik-detayi/:id" element={<EtkinlikDetayi />} />
+        <Route path="/kendi-etkinlik-detayi/:id" element={<KendiEtkinlikDetayi />} />
+        <Route path="/course-details" element={<CourseDetails />} />
+        <Route path="/course-edit" element={<CourseEdit />} />
       </Routes>
     </Router>
   );

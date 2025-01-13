@@ -3,6 +3,7 @@ import { Steps, Form, Input, Button, Select, DatePicker, Upload, message } from 
 import { UploadOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import "./EventCreation.css";
+import { useLocation } from "react-router-dom";
 
 const { Step } = Steps;
 const { TextArea } = Input;
@@ -11,8 +12,41 @@ const { Option } = Select;
 const EventCreation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation(); // Düzenleme verilerini almak için
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
+
+  // Düzenleme modunu kontrol edin
+  const editingEvent = location.state || null; // Eğer düzenleme için veri gelmezse null
+  const isEditing = !!editingEvent; // Düzenleme modunda olup olmadığını kontrol edin
+
+  useEffect(() => {
+    if (isEditing) {
+      // Gelen düzenleme verilerini form alanlarına set edin
+      form.setFieldsValue({
+        eventName: editingEvent.eventName,
+        category: editingEvent.category,
+        maxParticipants: editingEvent.maxEventParticipantNumber,
+        startTime: editingEvent.startEventTime ? DatePicker.format(editingEvent.startEventTime) : null,
+        endTime: editingEvent.endventDateTime ? DatePicker.format(editingEvent.endventDateTime) : null,
+        city: editingEvent.city,
+        address: editingEvent.adress,
+        description: editingEvent.description,
+      });
+
+      // Eğer görsel varsa fileList'e ekleyin
+      if (editingEvent.photoUrl) {
+        setFileList([
+          {
+            uid: "-1",
+            name: "Etkinlik Görseli",
+            status: "done",
+            url: editingEvent.photoUrl,
+          },
+        ]);
+      }
+    }
+  }, [isEditing, editingEvent, form]);
 
   const next = () => {
     setCurrentStep(currentStep + 1);
@@ -24,24 +58,14 @@ const EventCreation = () => {
 
   const onFinish = async (values) => {
     try {
-      // Tarihlerin alınıp alınmadığını kontrol etmek için log ekleyin
-      console.log("Start Time:", values.startTime);
-      console.log("End Time:", values.endTime);
-  
-      // Eğer tarih değerleri eksikse bir hata mesajı gösterin
       if (!values.startTime || !values.endTime) {
         message.error("Lütfen başlangıç ve bitiş zamanlarını girin!");
         return;
       }
-  
-      // Tarihleri uygun formata çevirin
+
       const startTime = values.startTime.utc().format("YYYY-MM-DDTHH:mm:ss.SSSZ");
       const endTime = values.endTime.utc().format("YYYY-MM-DDTHH:mm:ss.SSSZ");
-  
-      console.log("Formatted Start Time:", startTime);
-      console.log("Formatted End Time:", endTime);
-  
-      // Form verilerini hazırlayın
+
       const formData = new FormData();
       formData.append("eventName", values.eventName);
       formData.append("description", values.description);
@@ -51,34 +75,40 @@ const EventCreation = () => {
       formData.append("city", values.city);
       formData.append("category", values.category);
       formData.append("maxEventParticipantNumber", values.maxParticipants);
-  
+
       if (fileList.length > 0) {
-        formData.append("photo", fileList[0].originFileObj);
+        formData.append("photo", fileList[0].originFileObj || fileList[0].url);
       }
-  
-      // API çağrısı
-      const response = await fetch("http://localhost:5287/api/Event", {
-        method: "POST",
+
+      const url = isEditing
+        ? `http://localhost:5287/api/Event/${editingEvent.id}`
+        : "http://localhost:5287/api/Event";
+
+      const method = isEditing ? "PUT" : "POST";
+
+      const response = await fetch(url, {
+        method,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: formData,
       });
-  
+
       if (response.ok) {
-        message.success("Etkinlik başarıyla oluşturuldu!");
+        message.success(
+          isEditing ? "Etkinlik başarıyla güncellendi!" : "Etkinlik başarıyla oluşturuldu!"
+        );
         navigate("/benim-etkinliklerim");
       } else {
         const errorData = await response.json();
-        message.error(errorData.message || "Etkinlik oluşturulamadı!");
+        message.error(errorData.message || "İşlem başarısız oldu!");
       }
     } catch (error) {
-      console.error("Etkinlik oluşturma hatası:", error);
+      console.error("Hata oluştu:", error);
       message.error("Bir hata oluştu!");
     }
   };
-  
-  
+
   const steps = [
     {
       title: "Genel Bilgi",
