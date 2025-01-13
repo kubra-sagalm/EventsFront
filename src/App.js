@@ -13,6 +13,7 @@ import BenimKurslarım from "./Kurslar/BenimKurslarım";
 import CourseCreation from "./Kurslar/CourseCreation";
 import KayitOldugumKurslar from "./Kurslar/KayitOldugumKurslar";
 import EtkinlikDetayi from "./pages/EtkinlikDetayi";
+import Profile from "./pages/Profile";
 
 function App() {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -101,6 +102,17 @@ function App() {
               onMouseMove={handleMouseMove}
             >
               <KayitOldugumKurslar />
+            </Layout>
+          }
+        />
+        <Route
+          path="/profil"
+          element={
+           <Layout
+             isSidebarVisible={isSidebarVisible}
+             onMouseMove={handleMouseMove}
+           >
+             <Profile />
             </Layout>
           }
         />
