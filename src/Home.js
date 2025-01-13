@@ -2,13 +2,10 @@ import React, { useState, useCallback } from "react";
 import Sidebar from "./components/Sidebar";
 import Searchbar from "./components/SearchBar";
 import Listing from "./components/Listing";
-import DetailPanel from "./components/DetailPanel";
 import "./Home.css";
 
 const Home = () => {
   const [isSidebarVisible, setSidebarVisible] = useState(false); // Sidebar görünürlüğü
-  const [selectedListing, setSelectedListing] = useState(null); // Seçilen öğeyi tutar
-  const [isDetailPanelVisible, setDetailPanelVisible] = useState(false); // Detay paneli kontrolü
 
   // Fare hareketlerini daha az işlem için throttle ile sınırlayan yardımcı işlev
   const throttle = (func, delay) => {
@@ -44,17 +41,6 @@ const Home = () => {
     setSidebarVisible(false);
   };
 
-  // Liste elemanına tıklama işlemi
-  const handleListingClick = (listing) => {
-    if (selectedListing === listing) {
-      setSelectedListing(null);
-      setDetailPanelVisible(false);
-    } else {
-      setSelectedListing(listing);
-      setDetailPanelVisible(true);
-    }
-  };
-
   return (
     <div
       className="home-container"
@@ -67,22 +53,14 @@ const Home = () => {
         onMouseLeave={handleMouseLeaveSidebar}
       />
 
-      {/* Ana İçerik ve Sağ Panel */}
+      {/* Ana İçerik */}
       <div className="main-content">
         {/* Üstteki Arama Çubuğu */}
         <Searchbar />
 
-        {/* Liste ve Ayrıntı Paneli */}
+        {/* Listeleme Kısmı */}
         <div className="content-wrapper">
-          {/* Listeleme Kısmı */}
-          <Listing onListingClick={handleListingClick} />
-
-          {/* Details kısmı sadece bir öğe seçildiğinde aktif olacak */}
-          <div className={`details ${isDetailPanelVisible ? "active" : ""}`}>
-            {isDetailPanelVisible && selectedListing && (
-              <DetailPanel selectedListing={selectedListing} />
-            )}
-          </div>
+          <Listing /> {/* Tıklama olayına artık gerek yok */}
         </div>
       </div>
     </div>

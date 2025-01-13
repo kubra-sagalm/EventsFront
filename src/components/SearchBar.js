@@ -6,7 +6,7 @@ const SearchBar = () => {
     kategori: "",
     il: "",
     tarih: "",
-    etkinlikAdi: "",
+    tur: "", // Tür filtresi için ekledik
   });
 
   const handleFilterChange = (key, value) => {
@@ -57,14 +57,16 @@ const SearchBar = () => {
         </div>
 
         <div className="filter-item">
-          <button className="filter-button">Etkinlik Adı</button>
-          <input
-            type="text"
-            className="filter-input"
-            placeholder="Etkinlik adı..."
-            onChange={(e) => handleFilterChange("etkinlikAdi", e.target.value)}
-            value={filters.etkinlikAdi}
-          />
+          <button className="filter-button">Tür</button>
+          <select
+            className="filter-select"
+            onChange={(e) => handleFilterChange("tur", e.target.value)}
+            value={filters.tur}
+          >
+            <option value="">Tümü</option>
+            <option value="kurs">Kurs</option>
+            <option value="etkinlik">Etkinlik</option>
+          </select>
         </div>
       </div>
     </div>

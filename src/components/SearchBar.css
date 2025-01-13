@@ -52,10 +52,24 @@
   outline: none;
   background-color: white;
   color: #333;
+  height: 40px; /* Ortak yükseklik */
+  box-sizing: border-box; /* Padding ve border dahil */
+}
+
+.filter-date {
+  appearance: none; /* Tarayıcı varsayılan stilini kaldırır */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align: left; /* Tarih metnini sola hizalar */
+}
+
+.filter-date::-webkit-calendar-picker-indicator {
+  cursor: pointer; /* Tarih simgesini düzenler */
+  margin-left: 8px; /* İkonun pozisyonunu hizalar */
 }
 
 .filter-select:hover,
 .filter-input:hover,
 .filter-date:hover {
-  border-color: #1abc9c;
+  border-color: #1abc9c; /* Hover rengi */
 }

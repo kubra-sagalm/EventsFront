@@ -94,3 +94,20 @@
 .sidebar-container:not(:hover) {
   left: -20%;
 }
+
+.logout-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #e74c3c; /* Kırmızı renk */
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.logout-button:hover {
+  background-color: #c0392b; /* Hover için daha koyu kırmızı */
+}

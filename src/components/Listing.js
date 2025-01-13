@@ -22,16 +22,12 @@ const listings = [
   },
 ];
 
-const Listing = ({ onListingClick }) => {
+const Listing = () => {
   return (
     <div className="listings">
       <h2>Listings</h2>
       {listings.map((listing) => (
-        <div
-          key={listing.id}
-          className="list-item"
-          onClick={() => onListingClick(listing)}
-        >
+        <div key={listing.id} className="list-item">
           <img src={listing.image} alt={listing.title} />
           <div>
             <h3>{listing.title}</h3>
