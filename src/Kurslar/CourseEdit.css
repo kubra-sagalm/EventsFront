@@ -1,0 +1,18 @@
+.course-edit-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .course-edit-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .ant-form-item {
+    margin-bottom: 20px;
+  }
+  

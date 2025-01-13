@@ -12,14 +12,12 @@ import EventCreation from "./pages/EventCreation"; // EventCreation bileşeni im
 import BenimKurslarım from "./Kurslar/BenimKurslarım";
 import CourseCreation from "./Kurslar/CourseCreation";
 import KayitOldugumKurslar from "./Kurslar/KayitOldugumKurslar";
-import EtkinlikDetayi from "./pages/EtkinlikDetayi";
-<<<<<<< Updated upstream
 import Profile from "./pages/Profile";
-=======
 import KendiEtkinlikDetayi from "./pages/KendiEtkinlikDetayi";
 import CourseDetails from "./Kurslar/CourseDetails";
 import CourseEdit from "./Kurslar/CourseEdit";
->>>>>>> Stashed changes
+import EtkinlikDetayi from "./pages/EtkinlikDetayi";
+
 
 function App() {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
