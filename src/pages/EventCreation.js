@@ -22,11 +22,63 @@ const EventCreation = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const onFinish = () => {
-    message.success("Etkinlik başarıyla oluşturuldu!");
-    navigate("/benim-etkinliklerim");
+  const onFinish = async (values) => {
+    try {
+      // Tarihlerin alınıp alınmadığını kontrol etmek için log ekleyin
+      console.log("Start Time:", values.startTime);
+      console.log("End Time:", values.endTime);
+  
+      // Eğer tarih değerleri eksikse bir hata mesajı gösterin
+      if (!values.startTime || !values.endTime) {
+        message.error("Lütfen başlangıç ve bitiş zamanlarını girin!");
+        return;
+      }
+  
+      // Tarihleri uygun formata çevirin
+      const startTime = values.startTime.utc().format("YYYY-MM-DDTHH:mm:ss.SSSZ");
+      const endTime = values.endTime.utc().format("YYYY-MM-DDTHH:mm:ss.SSSZ");
+  
+      console.log("Formatted Start Time:", startTime);
+      console.log("Formatted End Time:", endTime);
+  
+      // Form verilerini hazırlayın
+      const formData = new FormData();
+      formData.append("eventName", values.eventName);
+      formData.append("description", values.description);
+      formData.append("startEventTime", startTime);
+      formData.append("endventDateTime", endTime);
+      formData.append("adress", values.address);
+      formData.append("city", values.city);
+      formData.append("category", values.category);
+      formData.append("maxEventParticipantNumber", values.maxParticipants);
+  
+      if (fileList.length > 0) {
+        formData.append("photo", fileList[0].originFileObj);
+      }
+  
+      // API çağrısı
+      const response = await fetch("http://localhost:5287/api/Event", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: formData,
+      });
+  
+      if (response.ok) {
+        message.success("Etkinlik başarıyla oluşturuldu!");
+        navigate("/benim-etkinliklerim");
+      } else {
+        const errorData = await response.json();
+        message.error(errorData.message || "Etkinlik oluşturulamadı!");
+      }
+    } catch (error) {
+      console.error("Etkinlik oluşturma hatası:", error);
+      message.error("Bir hata oluştu!");
+    }
   };
-
+  
+  
   const steps = [
     {
       title: "Genel Bilgi",
@@ -73,25 +125,40 @@ const EventCreation = () => {
       content: (
         <div>
           <h3>Etkinlik Zamanlaması</h3>
-          <Form layout="vertical" form={form}>
+          {/* Tarih formunu buraya yerleştiriyoruz */}
+          <Form layout="vertical" form={form} onFinish={onFinish}>
             <Form.Item
               label="Başlangıç Zamanı"
               name="startTime"
               rules={[{ required: true, message: "Başlangıç zamanını girin!" }]}
             >
-              <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+              <DatePicker
+                showTime={{ format: "HH:mm" }}
+                format="YYYY-MM-DD HH:mm"
+                style={{ width: "100%" }}
+              />
             </Form.Item>
             <Form.Item
               label="Bitiş Zamanı"
               name="endTime"
               rules={[{ required: true, message: "Bitiş zamanını girin!" }]}
             >
-              <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+              <DatePicker
+                showTime={{ format: "HH:mm" }}
+                format="YYYY-MM-DD HH:mm"
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Kaydet
+              </Button>
             </Form.Item>
           </Form>
         </div>
       ),
     },
+    
     {
       title: "Konum",
       content: (

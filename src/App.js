@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-import SignInForm from "./Login/SignInForm";
-import SignUpForm from "./Login/SignUpForm";
+import Login from "./Login/Login";
+import Register from "./Login/Register";
 import Footer from "./Footer";
 import Home from "./Home";
 import BenimEtkinliklerim from "./pages/BenimEtkinliklerim";
@@ -29,55 +29,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Giriş ve Kayıt Sayfası */}
-        <Route
-          path="/"
-          element={
-            <div
-              className={`container ${
-                isSidebarVisible ? "right-panel-active" : ""
-              }`}
-            >
-              <div className="form-container sign-up-container">
-                <SignUpForm />
-              </div>
-              <div className="form-container sign-in-container">
-                <SignInForm />
-              </div>
-              <div className="overlay-container">
-                <div className="overlay">
-                  <div className="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>
-                      To keep connected with us please login with your personal
-                      info
-                    </p>
-                    <button
-                      className="ghost"
-                      onClick={() => setSidebarVisible(false)}
-                    >
-                      Sign In
-                    </button>
-                  </div>
-                  <div className="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>
-                      Enter your personal details and start your journey with
-                      us
-                    </p>
-                    <button
-                      className="ghost"
-                      onClick={() => setSidebarVisible(false)}
-                    >
-                      Sign Up
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <Footer />
-            </div>
-          }
-        />
+        {/* Varsayılan olarak Giriş Sayfasına Yönlendirme */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
+        {/* Giriş ve Kayıt Ol Sayfaları */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         {/* Layout Kullanılan Sayfalar */}
         <Route
@@ -104,16 +61,16 @@ function App() {
           }
         />
         <Route
-  path="/benim-kurslarim"
-  element={
-    <Layout
-      isSidebarVisible={isSidebarVisible}
-      onMouseMove={handleMouseMove}
-    >
-      <BenimKurslarım />
-    </Layout>
-  }
-/>
+          path="/benim-kurslarim"
+          element={
+            <Layout
+              isSidebarVisible={isSidebarVisible}
+              onMouseMove={handleMouseMove}
+            >
+              <BenimKurslarım />
+            </Layout>
+          }
+        />
         <Route
           path="/kayit-olunan-etkinlikler" // Yeni rota Kayıt olunan etkinlikler için
           element={
@@ -136,19 +93,18 @@ function App() {
             </Layout>
           }
         />
-         <Route
-    path="/kayit-olunan-kurslar" // Yeni rota
-    element={
-      <Layout
-        isSidebarVisible={isSidebarVisible}
-        onMouseMove={handleMouseMove}
-      >
-        <KayitOldugumKurslar />
-      </Layout>
-    }
-  />
-  <Route path="/etkinlik-detayi/:id" element={<EtkinlikDetayi />} />
-
+        <Route
+          path="/kayit-olunan-kurslar" // Yeni rota
+          element={
+            <Layout
+              isSidebarVisible={isSidebarVisible}
+              onMouseMove={handleMouseMove}
+            >
+              <KayitOldugumKurslar />
+            </Layout>
+          }
+        />
+        <Route path="/etkinlik-detayi/:id" element={<EtkinlikDetayi />} />
       </Routes>
     </Router>
   );
