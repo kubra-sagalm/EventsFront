@@ -35,10 +35,6 @@ const Login = () => {
     navigate("/register"); // Kayıt ol sayfasına yönlendirme
   };
 
-  const enterWithoutAccount = () => {
-    navigate("/home"); // Kayıtsız olarak ana sayfaya yönlendirme
-  };
-
   return (
     <Card style={{ width: 400, margin: "100px auto", padding: "20px" }}>
       <Typography.Title
@@ -92,15 +88,6 @@ const Login = () => {
         <Link onClick={goToRegister} style={{ color: "#7b61ff", cursor: "pointer" }}>
           Henüz hesabınız yok mu? Kayıt Ol
         </Link>
-      </div>
-      <div style={{ textAlign: "center" }}>
-        <Button
-          type="default"
-          onClick={enterWithoutAccount}
-          style={{ color: "#7b61ff", borderColor: "#7b61ff" }}
-        >
-          Uygulamaya Giriş Yap
-        </Button>
       </div>
     </Card>
   );
