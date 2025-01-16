@@ -1,30 +1,31 @@
-/* Genel Kapsayıcı */
 .course-creation-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(135deg, #f0f4f7, #d9e8fc); /* Yumuşak mavi tonlar */
-    min-height: 100vh; /* Tam ekran yüksekliği */
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-  
-  /* Başlık */
-  .course-creation-title {
-    font-size: 36px; /* Büyük ve dikkat çekici */
-    font-weight: bold;
-    margin-bottom: 40px;
-    color: #333; /* Siyahın yumuşak tonu */
-    text-align: center;
-  }
-  
-  /* Ana Konteyner */
-  .course-creation-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f9fc; /* Hafif gri arka plan */
+  min-height: 100vh; /* Sayfanın tamamını kaplayacak şekilde */
+  overflow-y: auto; /* Kaydırma aktif */
+}
+
+.course-creation-container {
+  width: 100%;
+  max-width: 800px;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  color: #4a90e2;
+}
+
+.course-creation-title {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+}
+
+
   /* Kart Stili */
   .course-creation-card {
     background-color: #ffffff; /* Beyaz zemin */
@@ -65,14 +66,7 @@
     margin-top: 20px;
   }
   
-  /* Geri Butonu */
-  .back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 16px;
-    color: #409eff;
-  }
+
   
   /* Form Alanları */
   .ant-form-item {
@@ -133,5 +127,12 @@
     .back-button {
       font-size: 14px;
     }
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Tam ekran yüksekliği */
+    overflow: auto; /* Kaydırmayı aktif et */
   }
   

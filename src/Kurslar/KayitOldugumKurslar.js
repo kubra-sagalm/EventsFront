@@ -11,33 +11,15 @@ const KayitOldugumKurslar = () => {
     // Backend'den veri çekme
     const fetchCourses = async () => {
       try {
-        const response = await axios.get("/api/registered-courses", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        });
+        const response = await axios.get(
+          "http://localhost:5287/api/Course/MyCourseParticipations",
+          {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          }
+        );
         setCourses(response.data);
       } catch (error) {
         console.error("Kayıt olunan kurslar çekilirken hata oluştu:", error);
-        // Fake veri
-        setCourses([
-          {
-            id: 1,
-            title: "React Başlangıç",
-            category: "Development",
-            lessons: "10 Ders",
-            students: "200+ Öğrenci",
-            rating: 4.5,
-            image: "https://nerminahmethasogluortaokulu.meb.k12.tr/meb_iys_dosyalar/34/40/739670/resimler/2018_12/k_14083942_IMG_20150610_174114.jpg",
-          },
-          {
-            id: 2,
-            title: "UI/UX Design Fundamentals",
-            category: "Design",
-            lessons: "15 Ders",
-            students: "150+ Öğrenci",
-            rating: 4.7,
-            image: "https://nerminahmethasogluortaokulu.meb.k12.tr/meb_iys_dosyalar/34/40/739670/resimler/2018_12/k_14083942_IMG_20150610_174114.jpg",
-          },
-        ]);
       } finally {
         setLoading(false);
       }
@@ -51,30 +33,61 @@ const KayitOldugumKurslar = () => {
   }
 
   return (
-    <div className="kayit-oldugum-kurslar-container" style={{ textAlign: "left", paddingLeft: "20px" }}>
-      <h3 style={{ textAlign: "left", marginBottom: "20px" }}>Kayıt Olduğum Kurslar</h3>
-      <div className="courses-grid" style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+    <div
+      className="kayit-oldugum-kurslar-container"
+      style={{ textAlign: "left", paddingLeft: "20px" }}
+    >
+      <h3 style={{ textAlign: "left", marginBottom: "20px" }}>
+        Kayıt Olduğum Kurslar
+      </h3>
+      <div
+        className="courses-grid"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+        }}
+      >
         {courses.length > 0 ? (
-          courses.map((course) => (
-            <Card
-              key={course.id}
-              hoverable
-              cover={<img alt={course.title} src={course.image} />}
-              className="course-card"
-              style={{ width: "300px" }}
-            >
-              <Card.Meta
-                title={course.title}
-                description={
-                  <>
-                    <p>{course.lessons} Ders</p>
-                    <p>{course.category}</p>
-                    <p>Öğrenciler: {course.students}</p>
-                  </>
-                }
-              />
-            </Card>
-          ))
+          courses.map((courseParticipation) => {
+            // course ve status güvenlik kontrolü ekleniyor
+            const course = courseParticipation?.course || {};
+            const status = courseParticipation?.status || "Bilinmiyor";
+
+            return (
+              <Card
+                key={course.id}
+                hoverable
+                cover={<img alt={course.courseName || "No Title"} src={course.photoUrl || "https://dummyimage.com/600x400/cccccc/ffffff&text=No+Image"} />}
+                className="course-card"
+                style={{ width: "300px" }}
+              >
+                <Card.Meta
+                  title={course.courseName || "Kurs Adı Yok"}
+                  description={
+                    <>
+                      <p>Açıklama: {course.description || "Açıklama Yok"}</p>
+                      <p>Kategori: {course.category || "Kategori Yok"}</p>
+                      <p>Eğitmen: {course.instructor || "Eğitmen Bilgisi Yok"}</p>
+                      <p>
+                        Başlangıç:{" "}
+                        {course.startCourseTime
+                          ? new Date(course.startCourseTime).toLocaleString()
+                          : "Tarih Yok"}
+                      </p>
+                      <p>
+                        Bitiş:{" "}
+                        {course.endCourseTime
+                          ? new Date(course.endCourseTime).toLocaleString()
+                          : "Tarih Yok"}
+                      </p>
+                      <p>Durum: {status}</p>
+                    </>
+                  }
+                />
+              </Card>
+            );
+          })
         ) : (
           <Empty description="Henüz bir kursa kayıt olmadınız" />
         )}

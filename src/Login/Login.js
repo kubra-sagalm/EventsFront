@@ -18,6 +18,10 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
+
+        // Gelen token'ı localStorage'a kaydediyoruz
+        localStorage.setItem("token", data.token);
+
         console.log("Giriş başarılı:", data);
         message.success("Giriş başarılı!");
         navigate("/home"); // Ana sayfaya yönlendirme
