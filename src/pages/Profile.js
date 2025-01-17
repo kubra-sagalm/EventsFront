@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Upload, Select, message } from "antd";
 import { UploadOutlined, EditOutlined } from "@ant-design/icons";
-import "./Profile.css"; 
+import "./Profile.css"; // Profil için CSS dosyası
 
 const { Option } = Select;
 
+// Türkiye'deki tüm şehirler
 const cities = [
   "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara",
   "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt",
@@ -57,19 +58,23 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
+      {/* Profil Fotoğrafı */}
+      <div className="profile-photo-container">
+        <img
+          src={profilePhoto || "https://via.placeholder.com/100"}
+          alt="Profil"
+          className="profile-photo"
+        />
+      </div>
       <h2 className="profile-title">Profil Bilgileri</h2>
-      
+
       {!isEditing ? (
         <div className="profile-view-mode">
-          <p><strong>Kullanıcı Adı:</strong> {form.getFieldValue("username") || "—"}</p>
+          <p><strong>Ad:</strong> {form.getFieldValue("firstName") || "—"}</p>
+          <p><strong>Soyad:</strong> {form.getFieldValue("lastName") || "—"}</p>
           <p><strong>E-posta:</strong> {form.getFieldValue("email") || "—"}</p>
           <p><strong>Telefon:</strong> {form.getFieldValue("phone") || "—"}</p>
           <p><strong>Şehir:</strong> {form.getFieldValue("city") || "—"}</p>
-          {profilePhoto && (
-            <div className="profile-photo-container">
-              <img src={profilePhoto} alt="Profil" className="profile-photo" />
-            </div>
-          )}
           <Button
             icon={<EditOutlined />}
             type="primary"
@@ -85,7 +90,8 @@ const Profile = () => {
           layout="vertical"
           onFinish={handleFinish}
           initialValues={{
-            username: "",
+            firstName: "",
+            lastName: "",
             email: "",
             phone: "",
             city: "",
@@ -93,11 +99,18 @@ const Profile = () => {
           className="profile-form"
         >
           <Form.Item
-            label="Kullanıcı Adı"
-            name="username"
-            rules={[{ required: true, message: "Lütfen kullanıcı adınızı girin!" }]}
+            label="Ad"
+            name="firstName"
+            rules={[{ required: true, message: "Lütfen adınızı girin!" }]}
           >
-            <Input placeholder="Kullanıcı adı" />
+            <Input placeholder="Ad" />
+          </Form.Item>
+          <Form.Item
+            label="Soyad"
+            name="lastName"
+            rules={[{ required: true, message: "Lütfen soyadınızı girin!" }]}
+          >
+            <Input placeholder="Soyad" />
           </Form.Item>
           <Form.Item
             label="E-posta"
@@ -125,10 +138,8 @@ const Profile = () => {
               showSearch
               placeholder="Bir şehir seçin"
               optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-              allowClear
+              dropdownMatchSelectWidth={false} // Genişliği sabitle
+              style={{ width: "100%" }}
             >
               {cities.map((city) => (
                 <Option key={city} value={city}>
@@ -141,16 +152,11 @@ const Profile = () => {
             <Upload
               accept="image/*"
               showUploadList={false}
-              customRequest={({ file, onSuccess }) => setTimeout(() => onSuccess("ok"), 0)}
+              customRequest={({ file, onSuccess }) => setTimeout(() => onSuccess("ok"), 0)} // Fake upload
               onChange={handlePhotoUpload}
             >
               <Button icon={<UploadOutlined />}>Fotoğraf Yükle</Button>
             </Upload>
-            {profilePhoto && (
-              <div className="profile-photo-container">
-                <img src={profilePhoto} alt="Profil" className="profile-photo" />
-              </div>
-            )}
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" className="save-button">
