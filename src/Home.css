@@ -1,186 +1,106 @@
-/* Home Ana Konteyner */
-.home-container {
+/* Filtreleme Sekmesi */
+.filter-tabs {
   display: flex;
-  height: 100vh; /* Tam ekran yüksekliği */
-  background-color: #f6f5f7;
-  position: relative;
-  overflow: hidden; /* Fare çıktığında sidebar kaybolsun diye */
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-/* Sidebar gizli başlar ve fareyle üzerine gelindiğinde açılır */
-.sidebar-container {
-  position: absolute;
-  top: 0;
-  left: -20%; /* Başlangıçta tamamen gizli */
-  width: 20%; /* Sidebar genişliği */
-  height: 100%; /* Tam ekran yüksekliği */
-  background-color: #2c3e50;
+.tab-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  background-color: #e0e0e0;
+  color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.tab-button.active {
+  background-color: #007bff;
   color: white;
+}
+
+
+.horizontal-card:hover {
+  transform: scale(1.02);
+}
+
+.horizontal-card-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.horizontal-card-info {
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-  z-index: 200;
-}
-
-/* Sidebar görünür olduğunda */
-.sidebar-container.visible {
-  left: 0; /* Görünür hale gelir */
-}
-
-/* Sidebar'ın sağ sınırına fare çıktığında kaybolması */
-.sidebar-container.hide {
-  left: -20%; /* Geri gizlenir */
-}
-
-/* Orta Alan (Sidebar genişliği dışında kalan içerik) */
-.main-content {
-  width: 100%; /* Tüm genişlik */
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+  flex-direction: row;
   gap: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  transition: margin-left 0.3s ease-in-out;
+  align-items: center;
 }
 
-/* Sidebar görünür olduğunda ana içerik kayar */
-.sidebar-container.visible ~ .main-content {
-  margin-left: 20%; /* Sidebar genişliği kadar kaydır */
+.horizontal-card-title {
+  font-size: 16px;
+  font-weight: bold;
 }
 
-/* Arama Çubuğu */
-.search-section {
-  background-color: #eef2f5;
-  padding: 15px;
-  border-radius: 10px;
+.horizontal-card-category {
+  font-size: 14px;
+  color: #007bff;
+}
+
+.horizontal-card-dates {
+  font-size: 14px;
+  color: #555;
+}
+
+.horizontal-card-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 12px;
+  width: auto;
+}
+
+.horizontal-card-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Başlıklar */
+.horizontal-card-headers {
+  display: flex;
+  justify-content: space-between;
+  background: #f0f0f0;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+}
+
+.horizontal-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.search-section input {
-  width: 80%;
+  background: #fff;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  outline: none;
+  border-bottom: 1px solid #ccc;
 }
 
-.search-section button {
-  padding: 10px 20px;
-  background-color: #1abc9c;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.search-section button:hover {
-  background-color: #16a085;
-}
-
-/* Listings ve Details */
-.content-wrapper {
-  display: flex;
-  justify-content: space-between; /* Yan yana hizalama */
+.horizontal-card span {
   flex: 1;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  gap: 20px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  text-align: center;
+  font-size: 14px;
 }
 
-.listings {
-  width: 100%; /* Listings kısmı tam genişlik */
-  max-height: 600px; /* Maksimum yükseklik belirlendi */
-  overflow-y: auto; /* Dikey kaydırma aktif */
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.details {
-  position: absolute; /* Sabit pencere için */
-  top: 0;
-  right: 0;
-  width: 30%; /* Details kısmı genişlik */
-  height: 100%; /* Ekranın tamamını kaplar */
-  background-color: #f9f9f9;
-  border-radius: 10px 0 0 10px;
-  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
-  transform: translateX(100%); /* Gizli başlar */
-  transition: transform 0.3s ease-in-out;
-  z-index: 100;
-  overflow-y: auto; /* Detay paneli kaydırılabilir */
-}
-
-/* Details aktif olduğunda */
-.details.active {
-  transform: translateX(0); /* Sağdan gelir */
-}
-
-.listings h2,
-.details h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* Listings kısmı */
-.listings .list-item {
-  padding: 25px; /* İçerik aralığı artırıldı */
-  background-color: white;
-  border-radius: 10px;
-  margin-bottom: 20px;
+.list-container {
   display: flex;
-  gap: 30px; /* Resim ve metin arası boşluk artırıldı */
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  height: 140px; /* Liste öğelerinin yüksekliği artırıldı */
-}
-
-.listings .list-item:hover {
-  background-color: #eef2f5;
-  transform: scale(1.03); /* Daha belirgin hover efekti */
-}
-
-/* Resimler */
-.listings .list-item img {
-  width: 120px; /* Resim genişliği artırıldı */
-  height: 120px; /* Resim yüksekliği artırıldı */
-  border-radius: 10px; /* Hafif köşe yuvarlama */
-  background-color: #ddd;
-}
-
-/* Scrollbar görünümü (isteğe bağlı) */
-.listings::-webkit-scrollbar {
-  width: 8px; /* Kaydırma çubuğu genişliği */
-}
-
-.listings::-webkit-scrollbar-thumb {
-  background-color: #bbb; /* Kaydırma çubuğu rengi */
-  border-radius: 10px;
-}
-
-.listings::-webkit-scrollbar-thumb:hover {
-  background-color: #999; /* Hover durumunda kaydırma çubuğu rengi */
-}
-
-.details .detail-content {
-  padding: 15px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
 }

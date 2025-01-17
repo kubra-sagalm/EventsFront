@@ -72,7 +72,7 @@ const CourseCreation = () => {
       <Button className="back-button" type="link" onClick={() => navigate(-1)}>
         ← Geri
       </Button>
-      <h1 className="course-creation-title">Kurs Oluşturma</h1>
+      <h1 className="course-creation-title">KURS OLUŞTURMA</h1>
       <div className="course-creation-container">
         <Form
           layout="vertical"

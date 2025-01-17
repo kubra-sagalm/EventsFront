@@ -35,6 +35,35 @@ const KayitOldugumEtkinlikler = () => {
     fetchEvents();
   }, [navigate]);
 
+  const handleLeaveEvent = async (eventId) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+  
+      // Eğer endpoint JSON body yerine raw text veya query string bekliyorsa:
+      await axios.post(
+        `http://localhost:5287/api/EventParticipation/leave`,
+        null, // Body boş gönderiliyor
+        {
+          params: { eventId }, // eventId query parametre olarak gönderiliyor
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+  
+      // Başarılı bir şekilde çıkıldığında listeyi güncelle
+      setEvents((prevEvents) => prevEvents.filter(({ event }) => event.id !== eventId));
+    } catch (err) {
+      console.error("Etkinlikten çıkarken hata oluştu:", err);
+      alert(err.response?.data?.message || "Etkinlikten çıkarken bir hata oluştu.");
+    }
+  };
+  
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -64,12 +93,10 @@ const KayitOldugumEtkinlikler = () => {
               <h4>Etkinlik Adı: {event?.eventName || "Bilinmiyor"}</h4>
               <p>Açıklama: {event?.description || "Açıklama mevcut değil."}</p>
               <p>
-                Başlangıç Tarihi:{" "}
-                {event?.startEventTime ? new Date(event.startEventTime).toLocaleString() : "Bilinmiyor"}
+                Başlangıç Tarihi: {event?.startEventTime ? new Date(event.startEventTime).toLocaleString() : "Bilinmiyor"}
               </p>
               <p>
-                Bitiş Tarihi:{" "}
-                {event?.endventDateTime ? new Date(event.endventDateTime).toLocaleString() : "Bilinmiyor"}
+                Bitiş Tarihi: {event?.endventDateTime ? new Date(event.endventDateTime).toLocaleString() : "Bilinmiyor"}
               </p>
               <p>Adres: {event?.adress || "Adres bilgisi yok."}</p>
               <p>Şehir: {event?.city || "Şehir bilgisi yok."}</p>
@@ -80,6 +107,12 @@ const KayitOldugumEtkinlikler = () => {
               <p>Oluşturan Kişi: {event?.creatorName || "Bilinmiyor"}</p>
               <p>Etkinlik Durumu: {event?.eventStatus || "Bilinmiyor"}</p>
               <p>Katılım Durumu: {status || "Durum bilgisi yok."}</p>
+              <button
+                className="leave-event-button"
+                onClick={() => handleLeaveEvent(event.id)}
+              >
+                Etkinlikten Çık
+              </button>
             </div>
           </div>
         ))}

@@ -3,6 +3,7 @@ import { Card, Button, Spin, Empty } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./BenimKurslarım.css";
+import { Color } from "antd/es/color-picker";
 
 const BenimKurslarım = () => {
   const [courses, setCourses] = useState([]);
@@ -41,12 +42,29 @@ const BenimKurslarım = () => {
       className="benim-kurslarım-container"
       style={{ textAlign: "left", paddingLeft: "20px" }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px"}}>
-        <h3 style={{ textAlign: "left", marginBottom: "0" }}>Benim Kurslarım</h3>
-        <Button  type="primary" className="custom-purple-button" onClick={() => navigate("/course-creation")}>
-          Kurs Oluştur
-        </Button>
-      </div>
+<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px" }}>
+  <h3 style={{ textAlign: "left", marginBottom: "0",paddingLeft:"600px", color: "black",fontSize: "24px" }}>BENİM KURSLARIM</h3>
+  <Button
+    type="primary"
+    className="custom-purple-button"
+    onClick={() => navigate("/course-creation")}
+    style={{
+      fontSize: "12px",
+      padding: "2px 10px",
+      height: "35px",
+      width: "150px",
+      lineHeight: "1",
+      display: "inline-block",
+      whiteSpace: "nowrap",
+      borderRadius: "70px",
+      minWidth: "80px", // Butonun çok dar olmasını engellemek için minimum genişlik
+      textAlign: "center",
+    }}
+  >
+    Kurs Oluştur
+  </Button>
+</div>
+
       <div
         className="courses-grid"
         style={{
