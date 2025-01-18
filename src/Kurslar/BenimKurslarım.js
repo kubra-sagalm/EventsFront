@@ -115,9 +115,14 @@ const BenimKurslarım = () => {
                   </>
                 }
               />
-              <Button type="link" onClick={() => navigate(`/course-details/${course.id}`)}>
-                Daha Fazla Bilgi
-              </Button>
+  <Button
+  type="link"
+  onClick={() => navigate(`/course-details/${course.id}`)}
+  className="custom-purple-button"
+>
+  Daha Fazla Bilgi
+</Button>
+
             </Card>
           ))
         ) : (

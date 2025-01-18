@@ -1,106 +1,209 @@
-/* Filtreleme Sekmesi */
-.filter-tabs {
+/* Genel Konteyner Stilleri */
+.home-container {
+  padding: 24px;
+  background-color: #f5f5f5;
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  justify-content: space-between;
 }
 
-.tab-button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  background-color: #e0e0e0;
-  color: #333;
-  border-radius: 5px;
-  cursor: pointer;
+/* İçerik Konteyneri */
+.content-container {
+  flex: 1;
+  margin-right: 24px;
+}
+
+/* Filtre Konteyneri */
+.filter-container {
+  width: 300px;
+  background: linear-gradient(135deg, #ead4f9, #480463); /* Mor geçiş renkleri */
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 100px; /* Avatarın altına yerleştirme */
+  align-self: flex-start;
+  color: #fff; /* Beyaz metin rengi */
+  
+}
+
+.filter-container h3 {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #fff; /* Başlık metni beyaz */
+}
+
+.filter-item {
+  margin-bottom: 24px;
+}
+
+.filter-item label {
   font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #fff; /* Filtre etiketleri beyaz */
+}
+
+/* Ant Design Bileşenleri (Select ve DatePicker) */
+.ant-select,
+.ant-picker {
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+}
+
+.ant-select-selector,
+.ant-picker {
+  height: 44px;
+  border-radius: 8px;
+}
+
+.ant-select-selector:hover,
+.ant-picker:hover {
+  border-color: #fff; /* Hover sırasında beyaz kenar */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* Beyaz gölge efekti */
+}
+
+.ant-select-selection-item,
+.ant-picker-input > input {
+  font-size: 14px;
+  color: #333; /* İç metin rengi */
+}
+
+/* Tarih Bileşeni Stilleri */
+.ant-picker-header-view button {
+  color: #333; /* Başlık metni rengi */
+  font-weight: bold; /* Kalın yazı */
+}
+
+.ant-picker-header-view button:hover {
+  color: #6a0dad; /* Hover durumunda mor renk */
+}
+
+.ant-picker-cell-inner {
+  color: #333; /* Tarih hücre metin rengi */
+  font-weight: normal;
+}
+
+.ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: #6a0dad; /* Seçili öğe arka plan rengi */
+  color: white; /* Seçili metnin rengi */
+  font-weight: bold;
+  border-radius: 8px; /* Yuvarlatılmış köşeler */
+}
+
+.ant-picker-cell:hover .ant-picker-cell-inner {
+  background-color: rgba(106, 13, 173, 0.1); /* Hover arka plan */
+  color: #6a0dad; /* Hover metin rengi */
+}
+
+/* Kart Stilleri */
+.popular-card,
+.nearby-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* İçeriği dikey hizalama */
+  justify-content: space-between; /* İçeriği üst ve alt hizala */
+  min-height: 350px; /* Sabit yükseklik */
+}
+
+.popular-card img,
+.nearby-card img {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.popular-card h3,
+.nearby-card h3 {
+  font-size: 18px;
   font-weight: bold;
 }
 
-.tab-button.active {
-  background-color: #007bff;
+/* Abone Ol Butonu */
+.subscribe-button {
+  background-color: #6a0dad; /* Parlak mor */
+  border: none;
   color: white;
-}
-
-
-.horizontal-card:hover {
-  transform: scale(1.02);
-}
-
-.horizontal-card-image {
-  width: 80px;
-  height: 80px;
+  padding: 12px 16px;
   border-radius: 8px;
-  object-fit: cover;
-  margin-right: 15px;
-}
-
-.horizontal-card-info {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-}
-
-.horizontal-card-title {
   font-size: 16px;
   font-weight: bold;
-}
-
-.horizontal-card-category {
-  font-size: 14px;
-  color: #007bff;
-}
-
-.horizontal-card-dates {
-  font-size: 14px;
-  color: #555;
-}
-
-.horizontal-card-button {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 12px;
-  width: auto;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.horizontal-card-button:hover {
-  background-color: #0056b3;
+.subscribe-button:hover {
+  background-color: #9b59b6; /* Hover sırasında açık mor */
+  transform: scale(1.05); /* Hafif büyüme efekti */
 }
 
-
-/* Başlıklar */
-.horizontal-card-headers {
-  display: flex;
-  justify-content: space-between;
-  background: #f0f0f0;
-  padding: 10px;
+/* Bölüm Başlığı */
+.section-title {
+  font-size: 24px;
   font-weight: bold;
-  border-bottom: 2px solid #ccc;
-}
-
-.horizontal-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.horizontal-card span {
-  flex: 1;
+  margin-bottom: 16px;
   text-align: center;
-  font-size: 14px;
 }
 
-.list-container {
+/* Avatar Sabit Konum */
+.avatar-container {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  z-index: 1000;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse; /* Avatar sağda, yazı solda olacak şekilde hizalar */
+  align-items: center; /* Dikey hizalama */
+}
+
+/* Avatar Resmi */
+.avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hoşgeldiniz Yazısı */
+.welcome-message {
+  color: #610283; /* Yazı rengi */
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap; /* Tek satırda tut */
+  margin-right: 10px; /* Avatar ile yazı arasındaki boşluk */
+  line-height: 1.5; /* Satır aralığı */
+  animation: fadeOut 4s ease forwards; /* 10 saniye sonra kaybolacak */
+}
+
+/* Fade-out Animasyonu */
+@keyframes fadeOut {
+  0% {
+    opacity: 1; /* Görünür */
+    transform: translateX(0); /* Normal konum */
+  }
+  90% {
+    opacity: 1; /* Görünür kalır */
+  }
+  100% {
+    opacity: 0; /* Tamamen görünmez olur */
+    transform: translateX(-10px); /* Hafif sola kayar */
+  }
+}
+
+
+.welcome-message.visible {
+  opacity: 1;
+  transform: translateX(0); /* Yazıyı yerine getirir */
 }

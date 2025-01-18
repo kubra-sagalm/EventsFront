@@ -110,7 +110,7 @@ const BenimEtkinliklerim = () => {
   className="edit-event-btn"
   onClick={() => handleEditEvent(event)}
 >
-  Düzenle
+  DETAYLI BİLGİ
 </button>
 
             </div>

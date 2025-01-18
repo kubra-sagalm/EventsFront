@@ -65,4 +65,9 @@
 
   
   
+  .custom-purple-button {
+    color: #fcfcfc !important; /* Light purple color */
+    font-weight: bold; /* Optional: to make it bold */
+    background: rgb(70, 147, 220);
+  }
   

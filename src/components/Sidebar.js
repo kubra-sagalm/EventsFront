@@ -1,17 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate eklendi
+import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = ({ isVisible, onMouseEnter, onMouseLeave }) => {
-  const navigate = useNavigate(); // Yönlendirme için useNavigate kullanılıyor
-
-  // Çıkış işlemi
-  const handleLogout = () => {
-    // Oturum yönetimi varsa temizle (örneğin localStorage)
-    localStorage.removeItem("userToken"); // Örnek: JWT veya oturum verisini temizleme
-    navigate("/login"); // Giriş ekranına yönlendirme
-  };
-
   return (
     <div
       className={`sidebar-container ${isVisible ? "visible" : ""}`}
@@ -54,29 +45,11 @@ const Sidebar = ({ isVisible, onMouseEnter, onMouseLeave }) => {
         </div>
         <div className="sidebar-section">
           <h2>
-            <Link to="/profil" className="sidebar-link">
-              Profil
+            <Link to="/home" className="sidebar-link">
+              Anasayfa
             </Link>
           </h2>
         </div>
-      </div>
-      <div className="sidebar-footer">
-        <div className="sidebar-home-button">
-          <Link to="/home" className="home-link">
-            <span
-              className="home-icon"
-              style={{ fontSize: "24px", marginRight: "8px" }}
-            >
-              🏠
-            </span>
-            Anasayfa
-          </Link>
-        </div>
-
-        {/* Çıkış Butonu */}
-        <button className="logout-button" onClick={handleLogout}>
-          Çıkış
-        </button>
       </div>
     </div>
   );

@@ -9,9 +9,9 @@ const KendiEtkinlikDetayi = () => {
   const event = location.state;
 
   const handleEditEvent = () => {
-    navigate("/event-creation", { state: event }); // Etkinlik bilgilerini event-creation sayfasına taşıyoruz
+    navigate("/event-creation", { state: { ...event, isEdit: true } }); // Düzenleme için mevcut etkinlik bilgilerini taşıyoruz
   };
-
+  
   const handleCancelEvent = async () => {
     const confirmCancel = window.confirm("Bu etkinliği iptal etmek istediğinize emin misiniz?");
     if (!confirmCancel) return;

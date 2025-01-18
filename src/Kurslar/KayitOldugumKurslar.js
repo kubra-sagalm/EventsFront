@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Card, Spin, Empty } from "antd";
+import { Card, Spin, Empty, Button, message } from "antd";
 import axios from "axios";
 import "./KayitOldugumKurslar.css";
+import { Color } from "antd/es/color-picker";
 
 const KayitOldugumKurslar = () => {
   const [courses, setCourses] = useState([]);
@@ -28,6 +29,23 @@ const KayitOldugumKurslar = () => {
     fetchCourses();
   }, []);
 
+  const handleLeaveCourse = async (courseId) => {
+    try {
+      await axios.delete(
+        `http://localhost:5287/api/CourseParticipation?courseId=${courseId}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      message.success("Kurs katılımı başarıyla silindi.");
+      // Kurs listesini güncelle
+      setCourses(courses.filter((course) => course.course.id !== courseId));
+    } catch (error) {
+      console.error("Kurs katılımı silinirken hata oluştu:", error);
+      message.error("Kurs katılımı silinirken bir hata oluştu.");
+    }
+  };
+
   if (loading) {
     return <Spin size="large" className="loading-spinner" />;
   }
@@ -50,7 +68,6 @@ const KayitOldugumKurslar = () => {
       >
         {courses.length > 0 ? (
           courses.map((courseParticipation) => {
-            // course ve status güvenlik kontrolü ekleniyor
             const course = courseParticipation?.course || {};
             const status = courseParticipation?.status || "Bilinmiyor";
 
@@ -85,6 +102,14 @@ const KayitOldugumKurslar = () => {
                     </>
                   }
                 />
+                <Button
+                  type="primary"
+                  danger
+                  onClick={() => handleLeaveCourse(course.id)}
+                  style={{ marginTop: "10px"}}
+                >
+                  Etkinlikten Çık
+                </Button>
               </Card>
             );
           })
