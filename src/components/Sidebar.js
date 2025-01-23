@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = ({ isVisible, onMouseEnter, onMouseLeave }) => {
+  const role = localStorage.getItem("role"); // Rol bilgisini al
+
   return (
     <div
       className={`sidebar-container ${isVisible ? "visible" : ""}`}
-      onMouseEnter={onMouseEnter} // Fare sidebar'a girdiğinde
-      onMouseLeave={onMouseLeave} // Fare sidebar'dan çıktığında
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div className="sidebar-header">
         <h1 className="logo">EtkinliX</h1>
@@ -43,6 +45,23 @@ const Sidebar = ({ isVisible, onMouseEnter, onMouseLeave }) => {
             </li>
           </ul>
         </div>
+        {role === "Admin" && ( // Yalnızca adminler için görünür
+          <div className="sidebar-section">
+            <h2>Admin Paneli</h2>
+            <ul className="sidebar-list">
+              <li>
+                <Link to="/admin/etkinlik-onay" className="sidebar-link">
+                Etkinlik Onay Paneli
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/kurs-onay" className="sidebar-link">
+                  Kurs Onay Paneli
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
         <div className="sidebar-section">
           <h2>
             <Link to="/home" className="sidebar-link">

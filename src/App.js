@@ -17,8 +17,12 @@ import KendiEtkinlikDetayi from "./pages/KendiEtkinlikDetayi";
 import CourseDetails from "./Kurslar/CourseDetails";
 import CourseEdit from "./Kurslar/CourseEdit";
 import EtkinlikDetayi from "./pages/EtkinlikDetayi";
-
-
+import EditCourse from './Kurslar/CourseEdit';
+import EventEdit from "./pages/EventEdit";
+import ParticipantsList from "./pages/ParticipantsList";
+import Participants from "./Kurslar/Participants";
+import EtkinlikOnay from "./EtkinlikOnay";
+import KursOnay from "./KursOnay";
 function App() {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
 
@@ -124,6 +128,13 @@ function App() {
         <Route path="/kendi-etkinlik-detayi/:id" element={<KendiEtkinlikDetayi />} />
         <Route path="/course-details" element={<CourseDetails />} />
         <Route path="/course-edit" element={<CourseEdit />} />
+        <Route path="/course-details/:id" element={<CourseDetails />} />
+        <Route path="/edit-course/:id" element={<CourseEdit />} />
+        <Route path="/event-edit" element={<EventEdit />} />
+        <Route path="/participants" element={<ParticipantsList />} />
+        <Route path="/course/:id/participants" element={<Participants />} />
+        <Route path="/admin/etkinlik-onay" element={<EtkinlikOnay />} />
+        <Route path="/admin/kurs-onay" element={<KursOnay />} />
       </Routes>
     </Router>
   );

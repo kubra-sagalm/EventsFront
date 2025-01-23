@@ -115,9 +115,9 @@ const BenimKurslarım = () => {
                   </>
                 }
               />
-  <Button
+<Button
   type="link"
-  onClick={() => navigate(`/course-details/${course.id}`)}
+  onClick={() => navigate(`/course-details/${course.id}`, { state: course })}
   className="custom-purple-button"
 >
   Daha Fazla Bilgi

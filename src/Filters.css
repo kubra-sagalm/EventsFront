@@ -1,0 +1,11 @@
+.filter-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  .filter-item {
+    margin-bottom: 15px;
+  }
+  

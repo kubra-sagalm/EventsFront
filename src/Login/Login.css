@@ -1,0 +1,67 @@
+/* Login sayfasının ana kapsayıcısı */
+.login-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #e3d5ff, #f3eaff, #d6c2ff, #f7f1ff);
+    background-size: 400% 400%; /* Animasyon için genişletilmiş boyut */
+    animation: gradientBG 10s ease infinite;
+    overflow: hidden;
+  }
+  
+  /* Arka plandaki yazılar */
+  .background-text {
+    position: absolute;
+    bottom: 60px; /* Yazıyı en alta taşır */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(102, 51, 153, 0.3); /* Açık mor tonlarında şeffaf yazı */
+    text-align: center;
+    white-space: nowrap;
+    animation: floatText 8s infinite;
+    pointer-events: none; /* Kullanıcı etkileşimlerini engelle */
+  }
+  
+  /* Yazının hareket animasyonu */
+  @keyframes floatText {
+    0% {
+      transform: translateX(-50%) scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateX(-50%) scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50%) scale(1);
+      opacity: 0.7;
+    }
+  }
+  
+  /* Arka plan geçiş animasyonu */
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Login kartı */
+  .login-card {
+    width: 400px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.85); /* Şeffaf beyaz */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1; /* Yazının üstünde kalması için */
+  }
+  

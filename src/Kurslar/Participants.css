@@ -1,0 +1,45 @@
+/* Participants.css */
+
+.participants-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .participants-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .ant-list-item {
+    padding: 10px 15px;
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ant-list-item-meta-title {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .ant-list-item-meta-description {
+    color: #555;
+  }
+  
+  .ant-avatar {
+    background-color: #87d068;
+  }
+  

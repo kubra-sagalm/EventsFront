@@ -72,7 +72,7 @@ const EventCreation = () => {
   type="link" 
   onClick={() => navigate(-1)} 
 >
-  <LeftOutlined style={{ fontSize: "12px", marginRight: "4px" }} /> Geri Dön
+  <LeftOutlined /> Geri
 </Button>
 
       <h1 className="event-creation-title">Etkinlik Oluşturma</h1>
